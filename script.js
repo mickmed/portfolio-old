@@ -64,7 +64,7 @@ let projWrappers = document.querySelectorAll('.proj-wrapper')
 console.log(projWrappers)
 let projects = document.querySelector('.projects')
 projWrappers.forEach((proj) => {
-  proj.addEventListener('click', (e) => {
+  proj.addEventListener('mouseover', (e) => {
     console.log(e.target.querySelector('.modal'))
     let techs = e.target.nextSibling.nextSibling
     let modal = e.target.querySelector('.modal')

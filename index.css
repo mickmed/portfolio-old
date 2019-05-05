@@ -3,11 +3,15 @@ body {
   margin: 0;
   background: rgb(255, 255, 255);
   font-family: verdana;
+  
 }
 
 .main {
   width: 100vw;
   height: 10vh;
+  max-width:1200px;
+  margin:0 auto;
+  
 }
 
 .header {
@@ -34,6 +38,7 @@ body {
   top:0;
   left:0;
   width:20%;
+  z-index:1;
 }
 
 div.header-img img {
@@ -155,6 +160,7 @@ a {
   font-size: calc(.5em + 1vmin);
   color: #262626;
   position: fixed;
+  max-width:1200px;
 }
 .inner:before {
   content: "";
@@ -207,7 +213,7 @@ a {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  height: 90%;
+  height: 85%;
   margin: 5% 1%;
 }
 
@@ -218,7 +224,7 @@ a {
 /*//ABOUT//////////////////////*/
 .about{
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(255, 250, 242),rgba(255, 191, 118, 0.932));
-  margin: 3% 5% 10%;
+  margin: 3% 5% 5%;
   padding: 2%;
   border-radius: 5px;
   align-items: center;
@@ -373,23 +379,21 @@ a {
 }
 /* rgb(142, 232, 255, .9) */
 .modal .project-title h2{
-   text-shadow:.05em 0 black;
+   text-shadow:.03em 0 black;
 }
-.project-3-modal .project-title h2{
+/* .project-3-modal .project-title h2{
  
   font-size:14px;
-}
-#tech{
-  margin:5%;
-  padding-top:2%;
-}
+} */
+
 .tech{
   
   
   /* width:80%; */
   /* height:20%;  */
-  /* margin:5%; */
+  margin:5%;
   padding:5%; 
+  border-radius: 5px;
  
   
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(253, 228, 191),rgba(255, 191, 118, 0.932)); 
@@ -412,8 +416,35 @@ a {
 
 /* MEDIA QUERIES/////////////////// */
 
-@media only screen and (max-width: 600px) {
-  header-img{
-    width:15%;
+@media only screen and (min-width: 600px) {
+  .header-img{
+    width:17%;
   }
+  .project-title h2{
+    font-size:35px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .header-img{
+    width:14%;
+  }
+  .project-title h2{
+    font-size:45px;
+  }
+  .modal p{
+    display:block;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .about{
+    margin: 1% 5% 3%;
+  }
+  .projects{
+    margin:2% 5% 5%;
+  }
+  .techs{
+    font-size:24px;
+  }
+
 }
