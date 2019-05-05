@@ -38,26 +38,47 @@
 
 
 // let project3 = document.querySelector('.project3')
-let project3Modal = document.querySelector('.project-3-modal')
-// console.log(project1Modal)
-let projWrapper = document.querySelector('.proj-wrapper')
-projWrapper.addEventListener('mouseover', (e) => {
-  console.log(e.target.nextSibling.nextSibling)
-  let techs = e.target.nextSibling.nextSibling
-  techs.style.visibility="visible"
-  project3Modal.style.display = "block"
+// let project3Modal = document.querySelector('.project-3-modal')
+// // console.log(project1Modal)
+// let projWrapper = document.querySelector('.proj-wrapper')
+// projWrapper.addEventListener('mouseover', (e) => {
+//   console.log(e.target.nextSibling.nextSibling)
+//   let techs = e.target.nextSibling.nextSibling
+//   techs.style.visibility = "visible"
+//   project3Modal.style.display = "block"
 
+// })
+
+
+// projWrapper.addEventListener('mouseleave', (e) => {
+//   console.log(e.target.querySelector('.techs'))
+//   let techs = e.target.querySelector('.techs')
+
+//   techs.style.visibility = "hidden";
+// })
+
+
+
+
+let projWrappers = document.querySelectorAll('.proj-wrapper')
+console.log(projWrappers)
+let projects = document.querySelector('.projects')
+projWrappers.forEach((proj) => {
+  proj.addEventListener('click', (e) => {
+    console.log(e.target.querySelector('.modal'))
+    let techs = e.target.nextSibling.nextSibling
+    let modal = e.target.querySelector('.modal')
+    techs.style.visibility = "visible"
+    modal.style.display="block"
+
+  })
+  proj.addEventListener('mouseleave', (e) => {
+    console.log(e.target.querySelector('.techs'))
+    let techs = e.target.querySelector('.techs')
+  
+    techs.style.visibility = "hidden";
+  })
 })
-
-
-projWrapper.addEventListener('mouseleave', (e) => {
-  console.log(e.target.querySelector('.techs'))
-  let techs = e.target.querySelector('.techs')
-
-  techs.style.visibility = "hidden";
-})
-
-
 // let project4 = document.querySelector('.project4')
 // let project4Modal = document.querySelector('.project-4-modal')
 // // console.log(project1Modal)
