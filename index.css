@@ -11,11 +11,12 @@ body {
 }
 
 .header {
+  position:relative;
   padding: 0 0 0 1%;
   margin: 1% 3% 1% 3%;
   /* position: absolute; */
   font-size: calc(.9em + 1vmin);
-  display:flex;
+  
   justify-content: space-around;
   background-image: linear-gradient(rgba(30, 190, 190, .5), rgba(255, 255, 255, 1),rgba(255, 255, 255, 0.95));
   border-radius:50%;
@@ -29,7 +30,10 @@ body {
 
 .header-img{
   /* margin-top:1%; */
-  flex:1;
+  position:absolute;
+  top:0;
+  left:0;
+  width:20%;
 }
 
 div.header-img img {
@@ -42,11 +46,11 @@ div.header-img img {
 }
 
 .header-title-and-nav{
-  flex:5;
+  margin-left:20%;
   display:flex;
   flex-direction: column;
   justify-content:space-between;
-  position:relative;
+  
 }
 
 .title{
@@ -54,7 +58,8 @@ div.header-img img {
   font-style: italic;
   font-family: 'Roboto';
   margin:3% 5% 1% 6%;
-  /* color:white; */
+  color:rgb(63, 8, 8);
+  text-align:right;
 }
 
 .fab.fa-linkedin {
@@ -212,9 +217,9 @@ a {
 
 /*//ABOUT//////////////////////*/
 .about{
-  background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 1),rgba(233, 248, 248,.75));
+  background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(255, 250, 242),rgba(255, 174, 81, 0.932));
   margin: 0 5% 10%;
-  padding: 0 2%;
+  padding: 2%;
   border-radius: 5px;
   align-items: center;
   justify-content: space-between;
@@ -235,7 +240,11 @@ a {
   font-weight: lighter;
   font-style: italic;
 }
-
+.para-img{
+  height:4em;
+  float:right;
+  padding:3%;
+}
 
 /*//PROJECTS///////////////////// */
 .projects {
