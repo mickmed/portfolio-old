@@ -1,78 +1,80 @@
-let project1 = document.querySelector('.project1')
-let project1Modal = document.querySelector('.project-1-modal')
-console.log(project1Modal)
-
-project1.addEventListener('mouseover', () => {
-  console.log('clcik')
-  project1Modal.style.display = "block"
-
-})
-
-
-project1.addEventListener('mouseleave', () => {
-  console.log('clcik')
-
-
-  project1Modal.style.display = "none";
-})
-
-
-
-let project2 = document.querySelector('.project2')
-let project2Modal = document.querySelector('.project-2-modal')
+// let project1 = document.querySelector('.project1')
+// let project1Modal = document.querySelector('.project-1-modal')
 // console.log(project1Modal)
 
-project2.addEventListener('mouseover', () => {
-  console.log('clcik')
-  project2Modal.style.display = "block"
+// project1.addEventListener('mouseover', () => {
+//   console.log('clcik')
+//   project1Modal.style.display = "block"
 
-})
-
-
-project2.addEventListener('mouseleave', () => {
-  console.log('clcik')
+// })
 
 
-  project2Modal.style.display = "none";
-})
+// project1.addEventListener('mouseleave', () => {
+//   console.log('clcik')
 
 
-let project3 = document.querySelector('.project3')
+//   project1Modal.style.display = "none";
+// })
+
+
+
+// let project2 = document.querySelector('.project2')
+// let project2Modal = document.querySelector('.project-2-modal')
+// // console.log(project1Modal)
+
+// project2.addEventListener('mouseover', () => {
+//   console.log('clcik')
+//   project2Modal.style.display = "block"
+
+// })
+
+
+// project2.addEventListener('mouseleave', () => {
+//   console.log('clcik')
+
+
+//   project2Modal.style.display = "none";
+// })
+
+
+// let project3 = document.querySelector('.project3')
 let project3Modal = document.querySelector('.project-3-modal')
 // console.log(project1Modal)
-
-project3.addEventListener('mouseover', () => {
-  console.log('clcik')
+let projWrapper = document.querySelector('.proj-wrapper')
+projWrapper.addEventListener('mouseover', (e) => {
+  console.log(e.target.nextSibling.nextSibling)
+  let techs = e.target.nextSibling.nextSibling
+  techs.style.visibility="visible"
   project3Modal.style.display = "block"
 
 })
 
 
-project3.addEventListener('mouseleave', () => {
-  console.log('clcik')
+projWrapper.addEventListener('mouseleave', (e) => {
+  console.log(e.target.querySelector('.techs'))
+  let techs = e.target.querySelector('.techs')
 
-
-  project3Modal.style.display = "none";
+  techs.style.visibility = "hidden";
 })
 
 
-let project4 = document.querySelector('.project4')
-let project4Modal = document.querySelector('.project-4-modal')
-// console.log(project1Modal)
+// let project4 = document.querySelector('.project4')
+// let project4Modal = document.querySelector('.project-4-modal')
+// // console.log(project1Modal)
 
-project4.addEventListener('mouseover', () => {
-  console.log('clcik')
-  project4Modal.style.display = "block"
+// project4.addEventListener('mouseover', () => {
+//   console.log('clcik')
+//   project4Modal.style.display = "block"
 
-})
-
-
-project4.addEventListener('mouseleave', () => {
-  console.log('clcik')
+// })
 
 
-  project4Modal.style.display = "none";
-})
+// project4.addEventListener('mouseleave', () => {
+//   console.log('clcik')
+
+
+//   project4Modal.style.display = "none";
+// })
 
 
 let url = window.location.hash;
