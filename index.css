@@ -387,18 +387,15 @@ a {
 } */
 
 .tech{
-  
-  
   /* width:80%; */
   /* height:20%;  */
   margin:5%;
   padding:5%; 
   border-radius: 5px;
- 
-  
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(253, 228, 191),rgba(255, 191, 118, 0.932)); 
- 
-  
+}
+.tech img{
+  width:12%;
 }
 
 @keyframes project-opacity {
@@ -438,10 +435,10 @@ a {
 }
 @media only screen and (min-width: 1200px) {
   .about{
-    margin: 1% 5% 3%;
+    margin: 1% 5% 0;
   }
   .projects{
-    margin:2% 5% 5%;
+    margin:0 5% 5%;
   }
   .techs{
     font-size:24px;
