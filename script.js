@@ -60,25 +60,25 @@
 
 
 
-let projWrappers = document.querySelectorAll('.proj-wrapper')
-console.log(projWrappers)
-let projects = document.querySelector('.projects')
-projWrappers.forEach((proj) => {
-  proj.addEventListener('mouseover', (e) => {
-    console.log(e.target.querySelector('.modal'))
-    let techs = e.target.nextSibling.nextSibling
-    let modal = e.target.querySelector('.modal')
+// let projWrappers = document.querySelectorAll('.proj-wrapper')
+// console.log(projWrappers)
+// let projects = document.querySelector('.projects')
+// projWrappers.forEach((proj) => {
+//   proj.addEventListener('mouseover', (e) => {
+//     console.log(e.target.querySelector('.modal'))
+//     let techs = e.target.nextSibling.nextSibling
+//     let modal = e.target.querySelector('.modal')
     
-    modal.style.display="block"
+//     modal.style.display="block"
 
-  })
+//   })
   // proj.addEventListener('mouseleave', (e) => {
   //   console.log(e.target.querySelector('.techs'))
   //   let techs = e.target.querySelector('.techs')
   
   //   techs.style.visibility = "hidden";
   // })
-})
+// })
 // let project4 = document.querySelector('.project4')
 // let project4Modal = document.querySelector('.project-4-modal')
 // // console.log(project1Modal)

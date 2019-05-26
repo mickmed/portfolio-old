@@ -287,7 +287,7 @@ a {
   margin-right:15%; 
 }
 .proj-wrap2{
-  transform: rotate(3deg);
+  transform: rotate(2deg);
   margin-left:10%;
   margin-right:5%;
   
@@ -298,7 +298,7 @@ a {
   margin-right:15%; 
 }
 .proj-wrap4{
-  transform: rotate(3deg);
+  transform: rotate(2deg);
   margin-left:10%;
   margin-right:5%;
 }
@@ -332,6 +332,7 @@ a {
   height:100%;
   position: relative;
   margin:5%;
+  box-shadow:2px 2px 10px rgb(105, 6, 6); 
 }
 
 
@@ -350,6 +351,7 @@ a {
 .project:hover:before{
   animation: animate-project 1s linear forwards;
 }
+
 
 
 
@@ -391,6 +393,7 @@ a {
   margin-left:3%;
   font-family: arial;
   font-size: calc(.4em + 1vw);
+  text-shadow:.15em .15em .15em rgb(178, 221, 212);
 
 }
 
@@ -416,14 +419,20 @@ a {
   
 }
 
+.modal:hover {
+  animation: project-opacity2 1.5s linear forwards;
+}
+
+
 .modal p{
   color:blue;
 }
 /* rgb(142, 232, 255, .9) */
 .modal .project-title h2{
    text-shadow:.01em 0 black;
-   font-size:20px;
+   font-size:1em;
    color:red;
+   
 }
 /* .project-3-modal .project-title h2{
  
@@ -455,6 +464,19 @@ a {
   }
 }
 
+
+@keyframes project-opacity2 {
+  0% {
+    left: -5%;
+   opacity: 0.1;
+  }
+  50% {
+    opacity:0.5;
+  }
+  100% {
+    opacity:0.99;
+  }
+}
 /* MEDIA QUERIES/////////////////// */
 
 @media only screen and (min-width: 600px) {
@@ -466,6 +488,9 @@ a {
   }
   .techs{
     font-size:calc(.75em + 1vw);
+  }
+  .modal .project-title h2{
+    font-size:2em;
   }
 }
 
@@ -482,6 +507,10 @@ a {
   .techs{
     font-size:calc(.75em + 1vw);
   }
+  .modal .project-title h2{
+    font-size:2.5em;
+  }
+
 
 }
 @media only screen and (min-width: 1200px) {
@@ -493,6 +522,9 @@ a {
   }
   .techs{
     font-size:24px;
+  }
+  .modal .project-title h2{
+    font-size:2em;
   }
 
 }
