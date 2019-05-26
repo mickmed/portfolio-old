@@ -19,7 +19,7 @@ body {
   padding: 0 0 0 1%;
   margin: 1% 3% 1% 3%;
   /* position: absolute; */
-  font-size: calc(.9em + 1vmin);
+  font-size: calc(.9em + 1vw);
   
   justify-content: space-around;
   background-image: linear-gradient(rgba(30, 190, 190, .5), rgba(255, 255, 255, 1),rgba(255, 255, 255, 0.95));
@@ -59,10 +59,10 @@ div.header-img img {
 }
 
 .title{
-  font-size: calc(1em + 1vmin);
+  font-size: calc(.75em + 1vw);
   font-style: italic;
   font-family: 'Roboto';
-  margin:3% 5% 1% 6%;
+  margin:0 0 3% 6%;
   color:rgb(63, 8, 8);
   text-align:right;
 }
@@ -88,17 +88,24 @@ nav div{
   margin-left: 6%;
   display:flex;
   flex-direction:column;
-  font-size: calc(.5em + 2vmin);
+  font-size: calc(.5em + 2vw);
 }
 
 a {
   text-decoration: none;
 }
 
+.fa, .fa-chevron-right{
+  font-size:1em;
+
+}
+
+
 .menu-item1, .menu-item2, .menu-item3 {
   text-decoration: none;
   transform: rotate(-30deg);
   padding-left:20%;
+  font-family: arial;
 }
 
 .point1,
@@ -147,7 +154,7 @@ a {
 .point5 {
   left: 350%;
 }
-.menu-item5 {
+.menu-item5 {   
   left: 350%;
 }
 
@@ -157,7 +164,7 @@ a {
   width: 95%;
   height: 100%;
   display: inline-block;
-  font-size: calc(.5em + 1vmin);
+  font-size: calc(.5em + 1vw);
   color: #262626;
   position: fixed;
   max-width:1200px;
@@ -214,7 +221,7 @@ a {
   -webkit-overflow-scrolling: touch;
   position: absolute;
   height: 85%;
-  margin: 5% 1%;
+  margin: 2% 1%;
 }
 
 .inner .scrollable-page::-webkit-scrollbar {
@@ -224,8 +231,8 @@ a {
 /*//ABOUT//////////////////////*/
 .about{
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(255, 250, 242),rgba(255, 191, 118, 0.932));
-  margin: 3% 5% 5%;
-  padding: 2%;
+  margin: 2% 5% 0;
+  padding: 1%;
   border-radius: 5px;
   align-items: center;
   justify-content: space-between;
@@ -237,7 +244,7 @@ a {
 
 .about p {
   color: rgb(26, 7, 7);
-  font-size: calc(0.75em + 1vmin);
+  font-size: calc(0.75em + 1vw);
   text-align: justify;
   letter-spacing: 2px;
   line-height: 140%; 
@@ -257,27 +264,52 @@ a {
 .projects {
   display: flex;
   flex-wrap: wrap;
-  margin: 5% 5%;
+  margin: 3% 5%;
   border-radius:5px;
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(253, 228, 191),rgba(255, 191, 118, 0.932));
+  font-family:arial;
+  font-size:10px;
 }
 
 /* rgba(255, 174, 81, 0.932) */
 .proj-wrapper{
   position:relative;
   height: 100%;
-  margin:5% 1%;
+  margin:1% 1%;
   display:flex;
-
+ 
   /* width:90%; */
   /* justify-content: space-between; */
 }
+.proj-wrap1{
+  transform: rotate(-3deg);
+  margin-left:5%;
+  margin-right:15%; 
+}
+.proj-wrap2{
+  transform: rotate(3deg);
+  margin-left:10%;
+  margin-right:5%;
+  
+}
+.proj-wrap3{
+  transform: rotate(-3deg);
+  margin-left:5%;
+  margin-right:15%; 
+}
+.proj-wrap4{
+  transform: rotate(3deg);
+  margin-left:10%;
+  margin-right:5%;
+}
+
+
 .project {
   position:relative;
   height: 100%;
   /* margin:0 auto; */
   /* display:flex; */
-  width:76%;
+  width:66%;
   
 }
 
@@ -319,6 +351,8 @@ a {
   animation: animate-project 1s linear forwards;
 }
 
+
+
 @keyframes animate-project {
   0% {
     width: 0;
@@ -351,10 +385,13 @@ a {
 /* TECHS //////////////////*/
 
 .techs{
-  visibility:hidden;
+  /* visibility:hidden; */
   list-style-type: none;
-  padding:0;
+  padding:2% 0;
   margin-left:3%;
+  font-family: arial;
+  font-size: calc(.4em + 1vw);
+
 }
 
 
@@ -376,10 +413,17 @@ a {
   opacity:0;
   animation: project-opacity 1.5s linear forwards;
   
+  
+}
+
+.modal p{
+  color:blue;
 }
 /* rgb(142, 232, 255, .9) */
 .modal .project-title h2{
-   text-shadow:.03em 0 black;
+   text-shadow:.01em 0 black;
+   font-size:20px;
+   color:red;
 }
 /* .project-3-modal .project-title h2{
  
@@ -415,16 +459,19 @@ a {
 
 @media only screen and (min-width: 600px) {
   .header-img{
-    width:17%;
+    width:15%;
   }
   .project-title h2{
     font-size:35px;
+  }
+  .techs{
+    font-size:calc(.75em + 1vw);
   }
 }
 
 @media only screen and (min-width: 900px) {
   .header-img{
-    width:14%;
+    width:12%;
   }
   .project-title h2{
     font-size:45px;
@@ -432,6 +479,10 @@ a {
   .modal p{
     display:block;
   }
+  .techs{
+    font-size:calc(.75em + 1vw);
+  }
+
 }
 @media only screen and (min-width: 1200px) {
   .about{

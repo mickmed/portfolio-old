@@ -68,16 +68,16 @@ projWrappers.forEach((proj) => {
     console.log(e.target.querySelector('.modal'))
     let techs = e.target.nextSibling.nextSibling
     let modal = e.target.querySelector('.modal')
-    techs.style.visibility = "visible"
+    
     modal.style.display="block"
 
   })
-  proj.addEventListener('mouseleave', (e) => {
-    console.log(e.target.querySelector('.techs'))
-    let techs = e.target.querySelector('.techs')
+  // proj.addEventListener('mouseleave', (e) => {
+  //   console.log(e.target.querySelector('.techs'))
+  //   let techs = e.target.querySelector('.techs')
   
-    techs.style.visibility = "hidden";
-  })
+  //   techs.style.visibility = "hidden";
+  // })
 })
 // let project4 = document.querySelector('.project4')
 // let project4Modal = document.querySelector('.project-4-modal')
