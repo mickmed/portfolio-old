@@ -56,6 +56,7 @@ div.header-img img {
   flex-direction: column;
   justify-content:space-between;
   
+  
 }
 
 .title{
@@ -65,6 +66,7 @@ div.header-img img {
   margin:0 0 3% 6%;
   color:rgb(63, 8, 8);
   text-align:right;
+  font-family:Dosis;
 }
 
 .fab.fa-linkedin {
@@ -103,9 +105,10 @@ a {
 
 .menu-item1, .menu-item2, .menu-item3 {
   text-decoration: none;
-  transform: rotate(-30deg);
+  transform: rotate(-20deg);
   padding-left:20%;
   font-family: arial;
+  
 }
 
 .point1,
@@ -231,7 +234,7 @@ a {
 /*//ABOUT//////////////////////*/
 .about{
   background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(255, 250, 242),rgba(255, 191, 118, 0.932));
-  margin: 2% 5% 0;
+  margin: 10 5% 0;
   padding: 1%;
   border-radius: 5px;
   align-items: center;
@@ -393,7 +396,7 @@ a {
   margin-left:3%;
   font-family: arial;
   font-size: calc(.4em + 1vw);
-  text-shadow:.15em .15em .15em rgb(178, 221, 212);
+  text-shadow:.15em .15em .1em rgb(221, 207, 178)
 
 }
 
@@ -498,6 +501,9 @@ a {
   .header-img{
     width:12%;
   }
+  .menu-item1, .menu-item2, .menu-item3{
+    font-size:16px;
+  }
   .project-title h2{
     font-size:45px;
   }
@@ -516,6 +522,7 @@ a {
 @media only screen and (min-width: 1200px) {
   .about{
     margin: 1% 5% 0;
+    font-size:10px;
   }
   .projects{
     margin:0 5% 5%;
