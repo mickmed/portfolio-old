@@ -1,3 +1,55 @@
+
+function adjustWidth() {
+  let parent = document.querySelector('.scrollable-page')
+  let child = document.getElementById('nav')
+  child.style.width = parent.offsetWidth * .95 + 'px'
+  // console.log(typeof parent.offsetWidth)
+  // console.log(child)
+}
+
+adjustWidth()
+
+
+function showIcons() {
+  let projects = document.getElementsByClassName('modal')
+  // console.log(icons)
+  for (let i = 0; i < projects.length; i++) {
+    
+    projects[i].addEventListener('mouseover', (e) => {
+      let icons = document.querySelectorAll('.techs')
+      console.log(icons[i].children.length)
+      for (let j = 0; j < icons[i].children.length; j++) {
+        let ics = icons[i].children[j].children[0]
+        ics.style.display = "inline"
+       
+        // ics.style.width="1.5em"
+        let k=0
+        let iconAnim = setInterval(()=>{
+          k+=2.5
+          console.log(k)
+          if(k<360){
+            ics.style.transform = "rotateY("+ k + "deg)"
+          }else{
+            clearInterval(iconAnim)
+          }
+        },.1)
+        
+
+      }
+    })
+    projects[i].addEventListener('mouseout', (e) => {
+      let icons = document.querySelectorAll('.techs')
+      console.log(icons[i].children.length)
+      for (let j = 0; j < icons[i].children.length; j++) {
+        icons[i].children[j].children[0].style.display="none"
+       
+
+      }
+    })
+  }
+}
+
+showIcons()
 // let project1 = document.querySelector('.project1')
 // let project1Modal = document.querySelector('.project-1-modal')
 // console.log(project1Modal)
@@ -68,16 +120,16 @@
 //     console.log(e.target.querySelector('.modal'))
 //     let techs = e.target.nextSibling.nextSibling
 //     let modal = e.target.querySelector('.modal')
-    
+
 //     modal.style.display="block"
 
 //   })
-  // proj.addEventListener('mouseleave', (e) => {
-  //   console.log(e.target.querySelector('.techs'))
-  //   let techs = e.target.querySelector('.techs')
-  
-  //   techs.style.visibility = "hidden";
-  // })
+// proj.addEventListener('mouseleave', (e) => {
+//   console.log(e.target.querySelector('.techs'))
+//   let techs = e.target.querySelector('.techs')
+
+//   techs.style.visibility = "hidden";
+// })
 // })
 // let project4 = document.querySelector('.project4')
 // let project4Modal = document.querySelector('.project-4-modal')

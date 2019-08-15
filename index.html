@@ -17,38 +17,41 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
   <link
-    href="https://fonts.googleapis.com/css?family=Dosis|Fira+Sans|Lato|Montserrat|Oswald|Pacifico|Playfair+Display|Raleway|Roboto|Roboto+Condensed|Roboto+Slab|Satisfy|Teko"
+    href="https://fonts.googleapis.com/css?family=Chathura|Concert+One|Dhurjati|Dosis|Fahkwang|Fira+Sans|Grayscale|Lato|Mallanna|Mandali|Montserrat|Oswald|Overpass|Pacifico|Pavanam|Playfair+Display|Poor Story|Quicksand|Raleway|Roboto|Roboto+Condensed|Roboto+Slab|Satisfy|Teko"
     rel="stylesheet">
 </head>
 
-<body>
+<body onresize="adjustWidth()">
   <section class="main">
     <div class="header" id="header">
       <div class="header-img">
         <img src="img/IMG_8809.jpg" alt="mick" />
       </div>
-      <!-- <div class="header-dummy-img">
-        <img src="img/IMG_8809.jpg" alt="mick" />
-      </div> -->
-      
-      
-      <div class="header-title-and-nav">
-        <div class="title">
-          <a href="./index.html">Mick Roth - <small>web developer</a></small>
-        </div>
-        <nav>
+      <h1 class="title">Mick Roth : Web Developer
+      <i class="fas fa-caret-down"></i></h1>
+
+
+    </div>
+    <div class="inner">
+
+      <div class="scrollable-page">
+
+
+
+        <nav id="nav">
           <div>
-            <div class="menu-item1"><a href="#about">about</a></div>
-            <div class="point1"></div>
-          </div>
-          <div>
-            <div class="menu-item2"><a href="#projects">projects</a></div>
-            <div class="point2"></div>
+            <div class="menu-item1"><a href="#projects-header">projects</a></div>
+            <!-- <div class="point2"></div> -->
           </div>
 
           <div>
-            <div class="menu-item3"><a href="#tech">tech</a></div>
-            <div class="point3"></div>
+            <div class="menu-item2"><a href="#bio">bio</a></div>
+            <!-- <div class="point2"></div> -->
+          </div>
+
+          <div>
+            <div class="menu-item3"><a href="#tech-header">tech</a></div>
+            <!-- <div class="point3"></div> -->
           </div>
 
           <div>
@@ -57,42 +60,22 @@
                 <i class="fab fa-linkedin"></i>
               </a>
             </div>
-            <div class="point4"></div>
+            <!-- <div class="point4"></div> -->
           </div>
           <div>
             <div class="menu-item5">
               <a href="mailto:mickroth66@gmail.com?Subject=Web%20Development" target="_top"><i
                   class="far fa-envelope"></i></a>
-              <div class="point5"></div>
+              <!-- <div class="point5"></div> -->
             </div>
           </div>
         </nav>
-      </div>
-    </div>
-    <div class="inner">
 
-      <div class="scrollable-page">
-        
-        <div class="about" id="about">
+        <div class="projects-header" id="projects-header">
 
-          <div class="about-paragraph">
-            <img class=para-img src="img/math_master.png">
-            <p>
-              Highly adaptable
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              Progressive technologies 
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              Agile workflow 
-              
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              Solution-oriented thinking
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              Viable product delivery
-            </p>
-          </div>
         </div>
-        <div class="projects" id="projects">
 
+        <div class="projects" id="projects">
 
           <div class="proj-wrapper proj-wrap1">
             <div class="project project1">
@@ -104,24 +87,47 @@
                     <h2>My Travelogue</h2>
                   </div>
                   <p>...pin your memories to the map </p>
-                  <a href='http://mickmedium.esy.es/' target="_blank"><button type="button">Play</button></a>
+                  <!-- <a href='http://mickmedium.esy.es/' target="_blank"><button type="button">Play</button></a> -->
                 </div>
+
+                <ul class="techs">
+                  <li>
+                    <img src="./img/tech_icons/reactjs.png">
+                  </li>
+
+                  <li>
+                    <img src="./img/tech_icons/postgresql.png">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/node-js.png">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/sequelize.png">
+                  </li>
+
+                  <li>
+                    <img src="./img/tech_icons/mapbox.png">
+                  </li>
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/javascript.svg">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/css3.png">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/html5.png">
+                  </li>
+                </ul>
+
+
               </div>
             </div>
-            <ul class="techs">
-              <li>React</li>
-              <li>Mapbox</li>
-              <li>PostgreSQL</li>
-              <li>Node</li>
-              <li>Express</li>
-              <li>Sequelize</li>
-              <li>CSS</li>
-              <li>HTML</li>
-            </ul>
-            
-
           </div>
-          
+
+
+
+
           <div class="proj-wrapper proj-wrap2">
             <div class="project project2">
               <div class="img-wrapper">
@@ -132,41 +138,61 @@
                     <h2>Mental Math Master</h2>
                   </div>
                   <p>...sharpen your math head</p>
-
+                  <!-- 
                   <a href='https://pages.git.generalassemb.ly/mickmed/project-1/math_master/index.html'
-                    target="_blank"><button type="button">Play</button></a>
+                    target="_blank"><button type="button">Play</button></a> -->
+
                 </div>
+                <ul class="techs">
+                  <li>
+                    <img src="./img/tech_icons/javascript.svg">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/css3.png">
+                  </li>
+                  <li>
+                    <img src="./img/tech_icons/html5.png">
+                  </li>
+                </ul>
               </div>
             </div>
-            <ul class="techs">
-              <li>Javascript</li>
-              <li>CSS</li>
-              <li>HTML</li>
-            </ul>
           </div>
           <div class="proj-wrapper proj-wrap3">
             <div class="project project3">
               <div class="img-wrapper">
-                <img src="img/mick-medium2.png">
+                <img src="img/mick-medium3.png">
 
                 <div class="modal project-3-modal">
                   <div class="project-title">
                     <h2>Mick Medium</h2>
                   </div>
                   <p>...NYC snapshots </p>
-                  <a href='http://mickmedium.esy.es/' target="_blank"><button type="button">Browse</button></a>
+                  <!-- <a href='http://mickmedium.esy.es/' target="_blank"><button type="button">Browse</button></a> -->
                 </div>
-              </div>
-            </div>
+            
             <ul class="techs">
-              <li>PHP</li>
-              <li>MySQL</li>
-              <li>Bootstrap</li>
-              <li>Javascript</li>
-              <li>CSS</li>
-              <li>HTML</li>
+              <li>
+                <img src="./img/tech_icons/php.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/mysql.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/bootstrap.png">
+              </li>
+         
+              <li>
+                <img src="./img/tech_icons/javascript.svg">
+              </li>
+              <li>
+                <img src="./img/tech_icons/css3.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/html5.png">
+              </li>
             </ul>
-          </div>
+          </div>  </div>
+        </div>
           <div class="proj-wrapper proj-wrap4">
             <div class="project project4">
               <div class="img-wrapper">
@@ -174,32 +200,58 @@
 
                 <div class="modal project-4-modal">
                   <div class="project-title">
-                    <h2>Trees</h2>
+                    <h2>Trees of NYC</h2>
                     <!-- <h2>of</h2>
                     <h2>NYC</h2> -->
                   </div>
-                  <p>Users find the trees of New York City on a map filtering by boro, zipcode, species, and health of
-                    the
-                    tree(s). </p>
-                  <a href='http://nyc-trees.surge.sh/' target="_blank"><button type="button">Peruse</button></a>
+                  <p>...mapping the trees of NYC </p>
+                  <!-- <a href='http://nyc-trees.surge.sh/' target="_blank"><button type="button">Peruse</button></a> -->
                 </div>
-              </div>
-            </div>
+             
 
             <ul class="techs">
-              <li>React</li>
-              <li>Mapbox</li>
-              <li>Axios</li>
-              <li>HTML</li>
-              <li>CSS</li>
+              <li>
+                <img src="./img/tech_icons/reactjs.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/mapbox.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/html5.png">
+              </li>
+              <li>
+                <img src="./img/tech_icons/css3.png">
+              </li>
+
+
             </ul>
           </div>
         </div>
+          </div>
+        </div>
+        <div class="about-header" id="bio">
 
+        </div>
+        <div class="about" id="about">
+          <p>On a day to day basis I am immersed in code. As a teaching assistant at General Assembly I am assisting students, both individually
+            and in groups, with homework assignments and projects. The immersive program involves building front-end and
+            full-stack web apps.
+          </p>
+            <p>
+            Coding skills: Javascript, React, Node, Express, Sequelize, Postgres, PHP, MySQL,Ruby on Rails,  APIs, REST, Git, HTML, CSS, Bootstrap, JQuery.
+            </p>
+          
+          <p>
 
+            Interpersonal and communication skills: teaching debugging techniques, demonstrating concepts in a variety or ways, being sensitive to people's learning styles,
+            reflecting and sharing strengths and weaknesses, having a sincerely personable approach.
+          </p>
+        </div>
         <!-- /////TECH///// -->
 
+        <div class="tech-header" id="tech">
 
+        </div>
         <div class="tech" id="tech">
           <div class="project-title">
             <!-- <h2>Core Skills</h2> -->
@@ -217,12 +269,14 @@
           <img src="./img/tech_icons/rubyonrails.png">
           <img src="./img/tech_icons/sequelize.png">
           <img src="./img/tech_icons/bootstrap.png">
-          <p>React, Javascript, CSS, Mapbox, Bootstrap, NodeJS, SQL,Express, PHP, HTML5,
-            PostgreSQL, MySQL, Ruby on Rails, Git, JQuery, API's, NPM, Axios, Fetch, Google Cloud, Heroku, Surge. </p>
+          
 
         </div>
 
+        <div class="dummy">
 
+
+        </div>
 
 
 
