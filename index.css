@@ -490,7 +490,7 @@ ul.techs li img{
 .modal p{
   
   font-style:italic;
-  width:45%;
+  width:50%;
   font-size:1em;
 }
 
@@ -567,6 +567,12 @@ ul.techs li img{
   }
   .title{
     font-size: calc(.7em + 1vw);
+  }
+  .fas.fa-caret-down{
+    display:none;
+  }
+  nav{
+    display:flex;
   }
   .projects{
     padding-top:3%;

@@ -13,39 +13,51 @@ adjustWidth()
 function showIcons() {
   let projects = document.getElementsByClassName('modal')
   // console.log(icons)
+  console.log(window.innerWidth)
+  let eventType
+  if(window.innerWidth < 600){
+    eventType = 'click'
+    console.log(eventType)
+  }else{
+    eventType = 'mouseover'
+    console.log(eventType)
+  }
   for (let i = 0; i < projects.length; i++) {
+   
+   
+      projects[i].addEventListener(eventType, (e) => {
+        let icons = document.querySelectorAll('.techs')
+        console.log(icons[i].children.length)
+        console.log(window.innerWidth)
+        for (let j = 0; j < icons[i].children.length; j++) {
+          let ics = icons[i].children[j].children[0]
+          ics.style.display = "inline"
+
+          // ics.style.width="1.5em"
+          let k = 0
+          let iconAnim = setInterval(() => {
+            k += 2.5
+            // console.log(k)
+            if (k < 360) {
+              ics.style.transform = "rotateY(" + k + "deg)"
+            } else {
+              clearInterval(iconAnim)
+            }
+          }, .1)
+
+
+        }
+      })
+      projects[i].addEventListener('mouseout', (e) => {
+        let icons = document.querySelectorAll('.techs')
+        console.log(icons[i].children.length)
+        for (let j = 0; j < icons[i].children.length; j++) {
+          icons[i].children[j].children[0].style.display = "none"
+
+
+        }
+      })
     
-    projects[i].addEventListener('mouseover', (e) => {
-      let icons = document.querySelectorAll('.techs')
-      console.log(icons[i].children.length)
-      for (let j = 0; j < icons[i].children.length; j++) {
-        let ics = icons[i].children[j].children[0]
-        ics.style.display = "inline"
-       
-        // ics.style.width="1.5em"
-        let k=0
-        let iconAnim = setInterval(()=>{
-          k+=2.5
-          console.log(k)
-          if(k<360){
-            ics.style.transform = "rotateY("+ k + "deg)"
-          }else{
-            clearInterval(iconAnim)
-          }
-        },.1)
-        
-
-      }
-    })
-    projects[i].addEventListener('mouseout', (e) => {
-      let icons = document.querySelectorAll('.techs')
-      console.log(icons[i].children.length)
-      for (let j = 0; j < icons[i].children.length; j++) {
-        icons[i].children[j].children[0].style.display="none"
-       
-
-      }
-    })
   }
 }
 
