@@ -38,12 +38,12 @@ function showIcons() {
           let iconAnim = setInterval(() => {
             k += 2.5
             // console.log(k)
-            if (k < 360) {
-              ics.style.transform = "rotateY(" + k + "deg)"
+            if (k < 100) {
+              ics.style.transform = "translate(" + -k + "px)"
             } else {
               clearInterval(iconAnim)
             }
-          }, .1)
+          }, 20)
 
 
         }
