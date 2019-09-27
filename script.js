@@ -1,3 +1,19 @@
+function navBar(){
+  const array = ['projects', 'bio', 'tech', 'articles']
+  let sidebar = document.querySelector('.sidebar')
+  console.log('nav', sidebar)
+  sidebar.style.color='white'
+  array.forEach(e => {
+    let div = document.createElement('div')
+    sidebar.appendChild(div)
+    div.innerText = e
+    console.log(e)
+  })
+
+}
+
+navBar()
+
 
 function adjustWidth() {
   let parent = document.querySelector('.scrollable-page')
