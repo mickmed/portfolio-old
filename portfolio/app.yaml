@@ -1,0 +1,11 @@
+entrypoint: bundle exec rackup --port $PORT
+env: flex
+runtime: ruby
+
+
+env_variables:
+  SECRET_KEY_BASE: db807fdff636acdb9a0c708183899d418dfae792bb3bbec32939dfbc347edb60894937012f105db16e656b435ab2e0a19e574d8705202331cf61a2ee9ac106b5
+
+
+beta_settings:
+  cloud_sql_instances: portfolio-mick-roth:us-east1:postgres-portfolio
