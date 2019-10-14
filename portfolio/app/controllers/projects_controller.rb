@@ -10,10 +10,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
    
     @project_pics = Project.joins(:picture_attachment)
-    # @project_pics.map do |proj|
-    #   proj.url = proj.picture.service_url
-    #   @pics.push(proj)
-    # end
     @project_pics.map do |p|
         p.image_url = p.picture.service_url
     end
@@ -23,7 +19,6 @@ class ProjectsController < ApplicationController
                               .having('COUNT(active_storage_attachments) = 0')
 
     render json: { projects: @projects, project_pics: @project_pics + @project_no_pics }
-
     # render json: { posts: @projects }, include: :picture
   end
 
