@@ -52,8 +52,7 @@ class ProjectsController < ApplicationController
     puts 'IIIIIIIIII', params[:id]
 
     @project = Project.find(params[:id])
-    @project.picture.purge
-    @project.picture.attach(params[:picture])
+    params[:picture].present? && @project.picture.purge &&  @project.picture.attach(params[:picture])
     @project.update(project_params)
     # @project.update(project_params)
     

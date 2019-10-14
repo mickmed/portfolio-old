@@ -8,64 +8,60 @@ class TechnologiesController < ApplicationController
             p.image_url = p.picture.service_url
         end
     
-        @technology_no_pics = technology.left_joins(:picture_attachment)
+        @technology_no_pics = Technology.left_joins(:picture_attachment)
                                   .group(:id)
                                   .having('COUNT(active_storage_attachments) = 0')
     
         render json: { technologies: @technologies, technology_pics: @technology_pics + @technology_no_pics }
-        # render json: { posts: @projects }, include: :picture
+      
       end
     
       def show
-        @project = Project.find(params[:id])
-        puts 'show proj', @project.picture
-        # @post = Project.with_attached_picture.find(16)
-        # @project_img = @project.picture.service_url
-        # if Project.find(8).picture.attached?
+        @technology= Technology.find(params[:id])
+        puts 'show tech', @technology.picture
+   
        
-        render json: { project: @project, img: @project_img }
+        render json: { technology: @technology, img: @technology_img }
       end
     
       def create
         # puts params()
         puts "request body read", request.body.read
-        @project = Project.new(project_params)
-        puts @project 
-        @project.save
-        logger.debug "logger debug project #{@project}"
-        p "project inspect", @project.inspect
+        @technology = Technology.new(technology_params)
+        puts @technology 
+        @technology.save
+        logger.debug "logger debug technology #{@technology}"
+        p "techtechnologyinspect", @technology.inspect
     
         # render json: {"message":"posted"}
       end
     
       def update
         puts "**************************"
-        p project_params
+        p technology_params
         p params
         # puts "request body read", request.body.read
         puts 'IIIIIIIIII', params[:id]
     
-        @project = Project.find(params[:id])
-        @project.picture.purge
-        @project.picture.attach(params[:picture])
-        @project.update(project_params)
-        # @project.update(project_params)
+        @technology = Technology.find(params[:id])
+        params[:picture].present? && @technology.picture.purge &&  @technology.picture.attach(params[:picture])
+        @technology.update(technology_params)
+      
         
-        logger.debug "logger debug project #{@project}"
-        p "project inspect", @project.inspect
+        logger.debug "logger debug technology #{@technology}"
+        p "technology inspect", @technology.inspect
         # head :no_content
-        render json: @project
+        render json: @technology
       end
     
       def destroy
-        @project = Project.find(params[:id])
-        @project.destroy
+        @technology= Technology.destroy
         render json: 'destroyed'
       end
     
-      private
     
-      def project_params
-        params.permit(:id, :title, :picture)
+    
+      def technology_params
+        params.permit(:id, :name, :icon_url)
       end
     end
