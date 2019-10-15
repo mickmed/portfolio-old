@@ -30,9 +30,9 @@ function makeElement(element_type, className, parent, obj = {}) {
     return el
 }
 
-getResults = async (data) => {
+getResults = async (type) => {
 
-    let results = await fetch(BASE_URL + '/' + data)
+    let results = await fetch(BASE_URL + '/' + type)
         .then((res) => {
             // console.log(res.json)
             return res.json()
@@ -42,75 +42,49 @@ getResults = async (data) => {
         }))
     console.log(results)
     state.projects = results
-    data === 'projects' && mapProjects(results)
-    data === 'technologies' && mapTechnologies(results)
-
+    // data === 'projects' && mapProjects(results)
+    // data === 'technologies' && mapTechnologies(results)
+        mapData(type, results)
 
 }
 
-mapTechnologies = (technologies) => {
+
+
+mapData = (type, data) => {
     console.log(technologies && technologies)
-    let prjsDiv = document.querySelector('.technologies')
-    prjsDiv.classList.add('technologies')
-    technologies.technology_pics.map(tech => {
+    let prjsDiv = type === 'projects' ? document.querySelector('.projects') : document.querySelector('.technologies')
+    prjsDiv.classList.add(type)
+    let attStr = type === 'projects' ? 'proj' : 'tech'
+    console.log(type, data[type + '_pics'])
+    data[type + '_pics'].map(obj => {
         let form = document.createElement('form')
 
-        let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: 'projImg' + tech.id, type: 'file' })
-        let name = makeElement('input', 'name', form, { name: 'name', id: 'name' + tech.id, value: tech.name })
+        let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: attStr + 'Img' + obj.id, type: 'file' })
+        let title = type === 'projects' && makeElement('input', 'title', form, { name: 'title', id: 'title' + obj.id, value: obj.title })
+        let subtitle = type === 'projects' && makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle })
+        let name = type === 'technologies' && makeElement('input', 'name', form, { name: 'name', id: 'name' + obj.id, value: obj.name })
+
+        let pic = makeElement('img', attStr + '-pic', form, { src: obj.image_url })
+        pic.style.width = '50px'
         
-
-        let pic = makeElement('img', 'tech-pic', form, { src: tech.image_url })
-        pic.style.width = '50px'
-        let btn = makeElement('button', 'btn', form, { innerText: tech.title })
-        btn.addEventListener('click', () => {
-            getOneProject(tech)
-        })
         let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
         updateBtn.addEventListener('click', (event) => {
-            editProject(event, tech, 'technologies')
+            editProject(event, obj, type)
         })
         let destroyBtn = makeElement('button', 'destroy-btn', form, { innerText: 'delete' })
         destroyBtn.addEventListener('click', (event) => {
-            destroyProject(event, tech)
+            destroyProject(event, obj)
         })
-
+        let getOneBtn = makeElement('button', 'getOneBtn', form, { innerText: obj.title || obj.name })
+        btn.addEventListener('click', () => {
+            getOneProject(obj.id)
+        })
 
         prjsDiv.appendChild(form)
     })
 }
 
 
-mapProjects = (projects) => {
-    console.log(projects && projects)
-    let prjsDiv = document.querySelector('.projects')
-    prjsDiv.classList.add('projects')
-    projects.project_pics.map(proj => {
-        let form = document.createElement('form')
-
-        let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: 'techImg' + proj.id, type: 'file' })
-        let title = makeElement('input', 'title', form, { name: 'title', id: 'title' + proj.id, value: proj.title })
-        let subtitle = makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + proj.id, value: proj.subtitle })
-        let image_url = makeElement('input', 'image_url', form, { name: 'image_url', id: 'image_url' + proj.id, value: proj.image_url })
-
-        let pic = makeElement('img', 'proj-pic', form, { src: proj.image_url })
-        pic.style.width = '50px'
-        let btn = makeElement('button', 'btn', form, { innerText: proj.title })
-        btn.addEventListener('click', () => {
-            getOneProject(proj)
-        })
-        let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
-        updateBtn.addEventListener('click', (event) => {
-            editProject(event, proj, 'projects')
-        })
-        let destroyBtn = makeElement('button', 'destroy-btn', form, { innerText: 'delete' })
-        destroyBtn.addEventListener('click', (event) => {
-            destroyProject(event, proj)
-        })
-
-        prjsDiv.appendChild(form)
-
-    })
-}
 let technologies = getResults('technologies')
 let projects = getResults('projects')
 
@@ -118,19 +92,25 @@ let projects = getResults('projects')
 // mapProjects(getResults('projects'))
 
 editProject = async (event, data, type) => {
-    console.log(data)
+    console.log(data, type)
     event.preventDefault()
-   
+
     let title = type === 'projects' && document.getElementById('title' + data.id)
+    // let files = type === 'projects' && document.getElementById('projImg' + data.id)
     let name = type === 'technologies' && document.getElementById('name' + data.id)
-    let files = document.getElementById('type' + 'img' + data.id)
-   
+    let files = type === 'technologies' ? document.getElementById('techImg' + data.id) : document.getElementById('projImg' + data.id)
+    let a = document.getElementById('projImg' + data.id)
+    console.log(a)
+    //    console.log(a.files)
+    console.log(files)
+
+
     console.log('title', title.value)
-    console.log('name', name)
+    console.log('name', name.value)
     console.log('files', files.files)
     console.log(data.id, data.title, data.name)
     console.log('proj', data)
-   
+
     let form = new FormData();
     if (files.files.length !== 0) {
         form.append('picture', files.files[0])
@@ -152,10 +132,10 @@ editProject = async (event, data, type) => {
     })
 }
 
-let getOneProject = async (obj) => {
-    console.log(obj.id)
+let getOneProject = async (id) => {
+    console.log(id)
     let imgdiv = document.querySelector('img')
-    const getProject = await fetch(`${BASE_URL}/projects/${obj.id}`)
+    const getProject = await fetch(`${BASE_URL}/projects/${id}`)
         .then(function (res) {
             // console.log(res.json)
             return res.json()
@@ -230,3 +210,65 @@ destroyProject = async (e, event) => {
 
 }
 
+// mapProjects = (projects) => {
+//     console.log(projects && projects)
+//     let prjsDiv = document.querySelector('.projects')
+//     prjsDiv.classList.add('projects')
+//     projects.project_pics.map(proj => {
+//         let form = document.createElement('form')
+
+//         let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: 'projImg' + proj.id, type: 'file' })
+//         let title = makeElement('input', 'title', form, { name: 'title', id: 'title' + proj.id, value: proj.title })
+//         let subtitle = makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + proj.id, value: proj.subtitle })
+//         let image_url = makeElement('input', 'image_url', form, { name: 'image_url', id: 'image_url' + proj.id, value: proj.image_url })
+
+//         let pic = makeElement('img', 'proj-pic', form, { src: proj.image_url })
+//         pic.style.width = '50px'
+//         let btn = makeElement('button', 'btn', form, { innerText: proj.title })
+//         btn.addEventListener('click', () => {
+//             getOneProject(proj)
+//         })
+//         let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
+//         updateBtn.addEventListener('click', (event) => {
+//             editProject(event, proj, 'projects')
+//         })
+//         let destroyBtn = makeElement('button', 'destroy-btn', form, { innerText: 'delete' })
+//         destroyBtn.addEventListener('click', (event) => {
+//             destroyProject(event, proj)
+//         })
+
+//         prjsDiv.appendChild(form)
+
+//     })
+// }
+
+// mapTechnologies = (technologies) => {
+//     console.log(technologies && technologies)
+//     let prjsDiv = document.querySelector('.technologies')
+//     prjsDiv.classList.add('technologies')
+//     technologies.technology_pics.map(tech => {
+//         let form = document.createElement('form')
+
+//         let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: 'techImg' + tech.id, type: 'file' })
+//         let name = makeElement('input', 'name', form, { name: 'name', id: 'name' + tech.id, value: tech.name })
+
+
+//         let pic = makeElement('img', 'tech-pic', form, { src: tech.image_url })
+//         pic.style.width = '50px'
+//         let btn = makeElement('button', 'btn', form, { innerText: tech.name })
+//         btn.addEventListener('click', () => {
+//             getOneProject(tech)
+//         })
+//         let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
+//         updateBtn.addEventListener('click', (event) => {
+//             editProject(event, tech, 'technologies')
+//         })
+//         let destroyBtn = makeElement('button', 'destroy-btn', form, { innerText: 'delete' })
+//         destroyBtn.addEventListener('click', (event) => {
+//             destroyProject(event, tech)
+//         })
+
+
+//         prjsDiv.appendChild(form)
+//     })
+// }

@@ -12,7 +12,7 @@ class TechnologiesController < ApplicationController
                                   .group(:id)
                                   .having('COUNT(active_storage_attachments) = 0')
     
-        render json: { technologies: @technologies, technology_pics: @technology_pics + @technology_no_pics }
+        render json: { technologies: @technologies, technologies_pics: @technology_pics + @technology_no_pics }
       
       end
     
@@ -44,7 +44,8 @@ class TechnologiesController < ApplicationController
         puts 'IIIIIIIIII', params[:id]
     
         @technology = Technology.find(params[:id])
-        params[:picture].present? && @technology.picture.purge &&  @technology.picture.attach(params[:picture])
+        params[:picture].present? && @technology.picture.purge 
+        params[:picture].present? && @technology.picture.attach(params[:picture])
         @technology.update(technology_params)
       
         

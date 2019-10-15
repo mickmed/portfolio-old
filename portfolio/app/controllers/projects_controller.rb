@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
                               .group(:id)
                               .having('COUNT(active_storage_attachments) = 0')
 
-    render json: { projects: @projects, project_pics: @project_pics + @project_no_pics }
+    render json: { projects: @projects, projects_pics: @project_pics + @project_no_pics }
     # render json: { posts: @projects }, include: :picture
   end
 
