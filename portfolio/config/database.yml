@@ -25,6 +25,9 @@ development:
   <<: *default
   database: portfolio_development
 
+
+  
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -86,10 +89,10 @@ production:
   username: "postgres"
   password: "postgres"
   database: "postgres"
-  host: "/cloudsql/portfolio-mick-roth:us-east1:postgres-portfolio"
+  host: "/cloudsql/portfolio-mick:us-east1:postgres-instance-id"
 
-# gcloud projects add-iam-policy-binding portfolio-mick-roth \
-#   --member=serviceAccount:804285898435@cloudbuild.gserviceaccount.com \
+# gcloud projects add-iam-policy-binding portfolio-mick \
+#   --member=serviceAccount:771392542946@cloudbuild.gserviceaccount.com \
 #   --role=roles/editor
 
 

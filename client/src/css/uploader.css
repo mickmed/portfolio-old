@@ -1,3 +1,8 @@
 .projects, .title, .subtitle, .url, .pic, .btn{
     margin:1%;
 }
+
+
+/* .projects, .technologies{
+    display:none
+} */

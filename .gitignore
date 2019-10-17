@@ -1,2 +1,3 @@
 app.yaml
 portfolio/config/secrets/
+portfolio/config/credentials.yml.enc

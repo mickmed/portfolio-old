@@ -1,11 +1,11 @@
 let BASE_URL = 'http://localhost:3000'
+// let BASE_URL = 'https://portfolio-mick.appspot.com'
 
 state = {
     projects: [],
     technologies: [],
     title: ''
 }
-
 
 function addEventListener(el, handle, name, proj) {
     console.log(proj)
@@ -32,73 +32,88 @@ function makeElement(element_type, className, parent, obj = {}) {
 
 getResults = async (type) => {
 
-    let results = await fetch(BASE_URL + '/' + type)
-        .then((res) => {
-            // console.log(res.json)
-            return res.json()
-        })
-        .then((ans => {
-            return ans
-        }))
-    console.log(results)
-    state.projects = results
-    // data === 'projects' && mapProjects(results)
-    // data === 'technologies' && mapTechnologies(results)
+    console.log(Object.keys(state[type])[0])
+    if (state.switch !== type && state[type].length === 0) {
+        console.log('hi')
+        let results = await fetch(BASE_URL + '/' + type)
+            .then((res) => {
+                // console.log(res.json)
+                return res.json()
+            })
+            .then((ans => {
+                return ans
+            }))
+        console.log(results)
+        state[type] = results
+        state.switch = type
         mapData(type, results)
-
+    }else{
+       console.log('here')
+       mapData(type, state[type])
+    }
 }
 
-
-
 mapData = (type, data) => {
-    console.log(technologies && technologies)
-    let prjsDiv = type === 'projects' ? document.querySelector('.projects') : document.querySelector('.technologies')
-    prjsDiv.classList.add(type)
-    let attStr = type === 'projects' ? 'proj' : 'tech'
-    console.log(type, data[type + '_pics'])
-    data[type + '_pics'].map(obj => {
+    console.log(type, data)
+
+    if (document.querySelector('.current') !== null) {
+        document.querySelector('.current').style.display = "none"
+
+        document.querySelector('.current').classList.remove('current')
+
+
+    }
+    let currentDiv = makeElement('div', type, document.body, {id:type})
+    console.log(currentDiv)
+    currentDiv.className += ' current'
+
+    data[type].map(obj => {
         let form = document.createElement('form')
 
-        let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: attStr + 'Img' + obj.id, type: 'file' })
-        let title = type === 'projects' && makeElement('input', 'title', form, { name: 'title', id: 'title' + obj.id, value: obj.title })
-        let subtitle = type === 'projects' && makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle })
-        let name = type === 'technologies' && makeElement('input', 'name', form, { name: 'name', id: 'name' + obj.id, value: obj.name })
+        let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: type + 'Img' + obj.id, type: 'file' })
+        let title = (type === 'projects' || type === 'project') && makeElement('input', 'title', form, { name: 'title', id: 'title' + obj.id, value: obj.title })
+        console.log(title)
+        let subtitle = (type === 'projects' || type === 'project') && makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle })
+        let name = (type === 'technologies' || type === 'technology') && makeElement('input', 'name', form, { name: 'name', id: 'name' + obj.id, value: obj.name })
 
-        let pic = makeElement('img', attStr + '-pic', form, { src: obj.image_url })
+        let pic = makeElement('img', type + '-pic', form, { src: obj.image_url })
         pic.style.width = '50px'
-        
+
         let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
         updateBtn.addEventListener('click', (event) => {
             editProject(event, obj, type)
         })
         let destroyBtn = makeElement('button', 'destroy-btn', form, { innerText: 'delete' })
         destroyBtn.addEventListener('click', (event) => {
-            destroyProject(event, obj)
+            destroyProject(event, obj, type)
         })
         let getOneBtn = makeElement('button', 'getOneBtn', form, { innerText: obj.title || obj.name })
-        btn.addEventListener('click', () => {
-            getOneProject(obj.id)
+        getOneBtn.addEventListener('click', () => {
+            getOneProject(event, obj, type)
         })
 
-        prjsDiv.appendChild(form)
+        currentDiv.appendChild(form)
+        // currentDiv.style.display = "block"
+        // typeDiv.style.backGround = 'green'
     })
 }
 
 
-let technologies = getResults('technologies')
-let projects = getResults('projects')
+let controls = document.querySelector('.controls')
+let getTchsBtn = makeElement('button', 'getTechs', controls, { innerText: 'Technologies' })
+let getPrjsBtn = makeElement('button', 'getPrjs', controls, { innerText: 'Projects' })
+getPrjsBtn.addEventListener('click', (event => getResults('projects')))
+getTchsBtn.addEventListener('click', (event => getResults('technologies')))
 
-// let projects = 
-// mapProjects(getResults('projects'))
 
-editProject = async (event, data, type) => {
+const editProject = async (event, data, type) => {
     console.log(data, type)
     event.preventDefault()
 
-    let title = type === 'projects' && document.getElementById('title' + data.id)
+    let title = type === 'projects' || type === 'project' && document.getElementById('title' + data.id)
     // let files = type === 'projects' && document.getElementById('projImg' + data.id)
-    let name = type === 'technologies' && document.getElementById('name' + data.id)
-    let files = type === 'technologies' ? document.getElementById('techImg' + data.id) : document.getElementById('projImg' + data.id)
+    let name = type === 'technologies' || type === 'technology' && document.getElementById('name' + data.id)
+    let files = type === 'technologies' || type === 'technology' ? document.getElementById('techImg' + data.id) : document.getElementById('projImg' + data.id)
     let a = document.getElementById('projImg' + data.id)
     console.log(a)
     //    console.log(a.files)
@@ -132,52 +147,30 @@ editProject = async (event, data, type) => {
     })
 }
 
-let getOneProject = async (id) => {
-    console.log(id)
-    let imgdiv = document.querySelector('img')
-    const getProject = await fetch(`${BASE_URL}/projects/${id}`)
+const getOneProject = async (event, obj, type) => {
+    event.preventDefault()
+
+    let resDiv = type === 'projects' ? document.querySelector('.projects') : document.querySelector('.technologies')
+    resDiv.style.display = "none"
+
+
+    console.log(obj.id)
+
+    const getProject = await fetch(`${BASE_URL}/${type}/${obj.id}`)
         .then(function (res) {
-            // console.log(res.json)
+            console.log(res.json)
             return res.json()
+        }).then(function (red) {
+            console.log(red)
+            return red
         })
-    console.log(getProject)
-    imgdiv.src = `${getProjects.url}`
-    console.log(imgdiv)
+  
+    let typ = type === 'projects' ? 'project' : 'technology'
+    console.log(typ)
+    mapData(typ, {[typ]:[getProject[typ]]})
+    // renderOneProject(type, getProject)
 }
 
-let updateProject = async () => {
-
-    let file = document.querySelector('#file')
-
-
-}
-
-// editProject = async (e,event) => {
-//     console.log('here')
-//     event.preventDefault()
-//     let title = document.querySelectorAll('.title')[e.id-1]
-//     console.log(title)
-//     console.log(state.title)
-
-//     let files = document.getElementById('imgFile')
-//     console.log(files.files)
-//     let form = new FormData();
-//     for (let i = 0; i < files.files.length; i++) {
-//         console.log(files.files[i])
-//         form.append('picture', files.files[i])
-//         form.append('title', state.title)
-//     }
-//     await fetch(BASE_URL + '/projects/'+ e.id, {
-//         method: 'put',
-//         body: form
-//     }).then(res => {
-//         // console.log(res.json())
-//         return res.json()
-//     }).then(ans => {
-//         console.log(ans)
-//         return ans
-//     })
-// }
 
 addPic = async (e) => {
 
@@ -198,15 +191,17 @@ addPic = async (e) => {
     })
 }
 
-destroyProject = async (e, event) => {
+destroyProject = async (event, e, type) => {
+
     event.preventDefault()
-    await fetch(BASE_URL + '/projects/' + e.id, {
+    console.log('here')
+    await fetch(BASE_URL + '/' + type + '/' + e.id, {
         method: 'delete'
     })
         .then(des => {
             console.log(des)
         })
-    // await getProjects()
+    // await getResults(type)
 
 }
 
@@ -270,5 +265,32 @@ destroyProject = async (e, event) => {
 
 
 //         prjsDiv.appendChild(form)
+//     })
+// }
+
+// editProject = async (e,event) => {
+//     console.log('here')
+//     event.preventDefault()
+//     let title = document.querySelectorAll('.title')[e.id-1]
+//     console.log(title)
+//     console.log(state.title)
+
+//     let files = document.getElementById('imgFile')
+//     console.log(files.files)
+//     let form = new FormData();
+//     for (let i = 0; i < files.files.length; i++) {
+//         console.log(files.files[i])
+//         form.append('picture', files.files[i])
+//         form.append('title', state.title)
+//     }
+//     await fetch(BASE_URL + '/projects/'+ e.id, {
+//         method: 'put',
+//         body: form
+//     }).then(res => {
+//         // console.log(res.json())
+//         return res.json()
+//     }).then(ans => {
+//         console.log(ans)
+//         return ans
 //     })
 // }

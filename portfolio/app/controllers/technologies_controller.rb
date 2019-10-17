@@ -17,11 +17,11 @@ class TechnologiesController < ApplicationController
       end
     
       def show
-        @technology= Technology.find(params[:id])
-        puts 'show tech', @technology.picture
-   
-       
-        render json: { technology: @technology, img: @technology_img }
+        @technology = Technology.find(params[:id])
+        @technology.picture.attached? && @technology_img = @technology.picture.service_url 
+        @technology.image_url = @project_img
+        # puts Project.with_attached_picture.find(params[:id]).present?
+        render json: { technology: @technology}
       end
     
       def create
@@ -56,11 +56,12 @@ class TechnologiesController < ApplicationController
       end
     
       def destroy
-        @technology= Technology.destroy
+        @technology= Technology.find(params[:id])
+        @technology.destroy
         render json: 'destroyed'
       end
     
-    
+
     
       def technology_params
         params.permit(:id, :name, :icon_url)

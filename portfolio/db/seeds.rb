@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-nyc_snaps = Project.create!(title: 'NYC Snaps', subtitle: 'ruby to the rescue', url: 'http://google.com', image_url: 'google.com')
-my_travelogue = Project.create!(title: 'My Travelogue', subtitle: 'pin your memories to the map', url: 'http://google.com', image_url: 'google.com')
-nyc_trees = Project.create!(title: 'NYC Trees', subtitle: 'mapping the trees of NYC', url: 'http://google.com', image_url: 'google.com')
-mental_math = Project.create!(title: 'Mental Math', subtitle: 'test out your math head', url: 'http://google.com', image_url: 'google.com')
-mick_medium = Project.create!(title: 'Mick_Medium', subtitle: 'NYC Snapshots', url: 'http://google.com', image_url: 'google.com')
-news_clover = Project.create!(title: 'News Clover', subtitle: 'calling NewsApi', url: 'http://google.com', image_url: 'google.com')
+nyc_snaps = Project.create!(title: 'NYC Snaps', subtitle: 'ruby to the rescue', url: '')
+my_travelogue = Project.create!(title: 'My Travelogue', subtitle: 'pin your memories to the map', url: '')
+nyc_trees = Project.create!(title: 'NYC Trees', subtitle: 'mapping the trees of NYC', url: '')
+mental_math = Project.create!(title: 'Mental Math', subtitle: 'test out your math head', url: '')
+mick_medium = Project.create!(title: 'Mick_Medium', subtitle: 'NYC Snapshots', url: '')
+news_clover = Project.create!(title: 'News Clover', subtitle: 'calling NewsApi', url: '')
 
 javascript = Technology.create!(name:'Javascript', projects:[nyc_snaps, my_travelogue, nyc_trees, mental_math])
 react = Technology.create!(name:'React', projects:[my_travelogue, nyc_trees])
@@ -36,7 +36,7 @@ mysql = Technology.create!(name:"MySQL", projects:[mick_medium])
 
 
 
-puts "#{Project.count} teachers created!"
+puts "#{Project.count} projects created!"
 
 
 # herman = Author.create name: 'Herman Melville'

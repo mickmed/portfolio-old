@@ -7,8 +7,6 @@ class ProjectsController < ApplicationController
   #   end
 
   def index
-    @projects = Project.all
-   
     @project_pics = Project.joins(:picture_attachment)
     @project_pics.map do |p|
         p.image_url = p.picture.service_url
@@ -18,18 +16,16 @@ class ProjectsController < ApplicationController
                               .group(:id)
                               .having('COUNT(active_storage_attachments) = 0')
 
-    render json: { projects: @projects, projects_pics: @project_pics + @project_no_pics }
+    render json: { projects: @project_pics + @project_no_pics}
     # render json: { posts: @projects }, include: :picture
   end
 
   def show
     @project = Project.find(params[:id])
-    puts 'show proj', @project.picture
-    # @post = Project.with_attached_picture.find(16)
-    # @project_img = @project.picture.service_url
-    # if Project.find(8).picture.attached?
-   
-    render json: { project: @project, img: @project_img }
+    @project.picture.attached? && @project_img = @project.picture.service_url 
+    @project.image_url = @project_img
+    # puts Project.with_attached_picture.find(params[:id]).present?
+    render json: { project: @project}
   end
 
   def create
@@ -59,7 +55,7 @@ class ProjectsController < ApplicationController
     logger.debug "logger debug project #{@project}"
     p "project inspect", @project.inspect
     # head :no_content
-    render json: @project
+    render json: {project: @project, pic: @project.picture.service_url}
   end
 
   def destroy
