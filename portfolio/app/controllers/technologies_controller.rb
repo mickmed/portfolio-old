@@ -1,32 +1,31 @@
 class TechnologiesController < ApplicationController
 
     def index
-        @technologies = Technology.all
-       
-        @technology_pics = Technology.joins(:picture_attachment)
-        @technology_pics.map do |p|
+             
+        @technologies_pics = Technology.joins(:picture_attachment)
+        @technologies_pics.map do |p|
             p.image_url = p.picture.service_url
         end
     
-        @technology_no_pics = Technology.left_joins(:picture_attachment)
+        @technologies_no_pics = Technology.left_joins(:picture_attachment)
                                   .group(:id)
                                   .having('COUNT(active_storage_attachments) = 0')
     
-        render json: { technologies: @technologies, technologies_pics: @technology_pics + @technology_no_pics }
+        render json: { technologies: @technologies_pics + @technologies_no_pics }
       
       end
     
       def show
         @technology = Technology.find(params[:id])
-        @technology.picture.attached? && @technology_img = @technology.picture.service_url 
-        @technology.image_url = @project_img
+        
+        @technology.picture.attached? && @technology_img = @technology.picture.service_url && @technology.image_url = @technology.img
         # puts Project.with_attached_picture.find(params[:id]).present?
-        render json: { technology: @technology}
+        render json: { technology: @technology, technology_projects: @technology.projects}
       end
     
       def create
         # puts params()
-        puts "request body read", request.body.read
+        puts "request body read", request.body.read 
         @technology = Technology.new(technology_params)
         puts @technology 
         @technology.save

@@ -1,7 +1,7 @@
 let BASE_URL = 'http://localhost:3000'
 // let BASE_URL = 'https://portfolio-mick.appspot.com'
 
-state = {
+let state = {
     projects: [],
     technologies: [],
     title: ''
@@ -30,7 +30,7 @@ function makeElement(element_type, className, parent, obj = {}) {
     return el
 }
 
-getResults = async (type) => {
+let getResults = async (type) => {
 
     console.log(Object.keys(state[type])[0])
     if (state.switch !== type && state[type].length === 0) {
@@ -53,7 +53,7 @@ getResults = async (type) => {
     }
 }
 
-mapData = (type, data) => {
+let mapData = (type, data) => {
     console.log(type, data)
 
     if (document.querySelector('.current') !== null) {
@@ -68,6 +68,7 @@ mapData = (type, data) => {
     currentDiv.className += ' current'
 
     data[type].map(obj => {
+        // console.log(obj.projects && obj.projects)
         let form = document.createElement('form')
 
         let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: type + 'Img' + obj.id, type: 'file' })
@@ -76,10 +77,12 @@ mapData = (type, data) => {
         let subtitle = (type === 'projects' || type === 'project') && makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle })
         let name = (type === 'technologies' || type === 'technology') && makeElement('input', 'name', form, { name: 'name', id: 'name' + obj.id, value: obj.name })
 
+        let tech_projs = (type === 'technology') && makeElement('input', 'tech_prod', form, { })
+
         let pic = makeElement('img', type + '-pic', form, { src: obj.image_url })
         pic.style.width = '50px'
 
-        let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
+        let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit'})
         updateBtn.addEventListener('click', (event) => {
             editProject(event, obj, type)
         })
@@ -167,7 +170,12 @@ const getOneProject = async (event, obj, type) => {
   
     let typ = type === 'projects' ? 'project' : 'technology'
     console.log(typ)
-    mapData(typ, {[typ]:[getProject[typ]]})
+    let x = getProject[typ]
+    typ ==='technology' && (x.projs = getProject.technology_projects)
+    
+    console.log(typ,x)
+    
+    mapData(typ, {[typ]:[x]})
     // renderOneProject(type, getProject)
 }
 
@@ -204,6 +212,8 @@ destroyProject = async (event, e, type) => {
     // await getResults(type)
 
 }
+
+
 
 // mapProjects = (projects) => {
 //     console.log(projects && projects)
