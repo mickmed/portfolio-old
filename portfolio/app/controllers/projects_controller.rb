@@ -7,16 +7,18 @@ class ProjectsController < ApplicationController
   #   end
 
   def index
-    @project_pics = Project.joins(:picture_attachment)
-    @project_pics.map do |p|
-        p.image_url = p.picture.service_url
-    end
+    @projects = Project.all 
+    render json: {projects: @projects}
+    # @project_pics = Project.joins(:picture_attachment)
+    # @project_pics.map do |p|
+    #     p.image_url = p.picture.service_url
+    # end
 
-    @project_no_pics = Project.left_joins(:picture_attachment)
-                              .group(:id)
-                              .having('COUNT(active_storage_attachments) = 0')
+    # @project_no_pics = Project.left_joins(:picture_attachment)
+    #                           .group(:id)
+    #                           .having('COUNT(active_storage_attachments) = 0')
 
-    render json: { projects: @project_pics + @project_no_pics}
+    # render json: { projects: @project_pics + @project_no_pics}
     # render json: { posts: @projects }, include: :picture
   end
 
@@ -67,7 +69,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:id, :title, :picture)
+    params.permit(:id, :title, :site_url, :local_url, :picture)
   end
 end
 

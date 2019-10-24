@@ -47,9 +47,9 @@ let getResults = async (type) => {
         state[type] = results
         state.switch = type
         mapData(type, results)
-    }else{
-       console.log('here')
-       mapData(type, state[type])
+    } else {
+        console.log('here')
+        mapData(type, state[type])
     }
 }
 
@@ -63,7 +63,7 @@ let mapData = (type, data) => {
 
 
     }
-    let currentDiv = makeElement('div', type, document.body, {id:type})
+    let currentDiv = makeElement('div', type, document.body, { id: type })
     console.log(currentDiv)
     currentDiv.className += ' current'
 
@@ -72,17 +72,29 @@ let mapData = (type, data) => {
         let form = document.createElement('form')
 
         let imgUpload = makeElement('input', 'imgUpload', form, { name: 'image', id: type + 'Img' + obj.id, type: 'file' })
+
         let title = (type === 'projects' || type === 'project') && makeElement('input', 'title', form, { name: 'title', id: 'title' + obj.id, value: obj.title })
         console.log(title)
+
         let subtitle = (type === 'projects' || type === 'project') && makeElement('input', 'subtitle', form, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle })
+
         let name = (type === 'technologies' || type === 'technology') && makeElement('input', 'name', form, { name: 'name', id: 'name' + obj.id, value: obj.name })
 
-        let tech_projs = (type === 'technology') && makeElement('input', 'tech_prod', form, { })
 
-        let pic = makeElement('img', type + '-pic', form, { src: obj.image_url })
+
+        let local_url = makeElement('input', 'local_url', form, { name: 'url', id: 'local_url' + obj.id, value: obj.local_url })
+        
+        let site_url = (type === 'projects' || type === 'project') && makeElement('input', 'site_url', form, { name: 'url', id: 'site_url' + obj.id, value: obj.site_url })
+
+
+     
+
+        let tech_projs = (type === 'technology') && makeElement('input', 'tech_prod', form, {})
+
+        let pic = makeElement('img', type + '-pic' + obj.id, form, { src: obj.image_url })
         pic.style.width = '50px'
 
-        let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit'})
+        let updateBtn = makeElement('button', 'update-btn', form, { innerText: 'edit' })
         updateBtn.addEventListener('click', (event) => {
             editProject(event, obj, type)
         })
@@ -110,31 +122,41 @@ getTchsBtn.addEventListener('click', (event => getResults('technologies')))
 
 
 const editProject = async (event, data, type) => {
-    console.log(data, type)
+    // console.log(data, type)
     event.preventDefault()
 
-    let title = type === 'projects' || type === 'project' && document.getElementById('title' + data.id)
+    let title = type === ('projects' || type === 'project') && document.getElementById('title' + data.id)
+    let site_url = type === ('projects' || type === 'project') && document.getElementById('site_url' + data.id)
+    let local_url =
+    document.getElementById('local_url' + data.id)
+    console.log('local_url', local_url.value)
     // let files = type === 'projects' && document.getElementById('projImg' + data.id)
-    let name = type === 'technologies' || type === 'technology' && document.getElementById('name' + data.id)
-    let files = type === 'technologies' || type === 'technology' ? document.getElementById('techImg' + data.id) : document.getElementById('projImg' + data.id)
-    let a = document.getElementById('projImg' + data.id)
-    console.log(a)
+    let name = type === ('technologies' || type === 'technology') && document.getElementById('name' + data.id)
+    let files = document.querySelector('#' + type + 'Img' + data.id)
+    // let a = document.getElementById('projImg' + data.id)
+    // console.log('here', '.' + type + 'Img' + data.id)
     //    console.log(a.files)
-    console.log(files)
-
-
-    console.log('title', title.value)
-    console.log('name', name.value)
     console.log('files', files.files)
-    console.log(data.id, data.title, data.name)
-    console.log('proj', data)
+
+
+    // console.log('title', title)
+    // console.log('site_url', site_url.value)
+    // console.log('name', name.value)
+    // console.log('files', files.files)
+    // console.log(data.id, data.title, data.name)
+    // console.log('proj', data)
 
     let form = new FormData();
     if (files.files.length !== 0) {
         form.append('picture', files.files[0])
     }
     type === 'projects' && form.append('title', title.value)
+    type === 'projects' && form.append('site_url', site_url.value)
     type === 'technologies' && form.append('name', name.value)
+    form.append('local_url', local_url.value)
+
+    
+
 
 
 
@@ -167,15 +189,15 @@ const getOneProject = async (event, obj, type) => {
             console.log(red)
             return red
         })
-  
+
     let typ = type === 'projects' ? 'project' : 'technology'
     console.log(typ)
     let x = getProject[typ]
-    typ ==='technology' && (x.projs = getProject.technology_projects)
-    
-    console.log(typ,x)
-    
-    mapData(typ, {[typ]:[x]})
+    typ === 'technology' && (x.projs = getProject.technology_projects)
+
+    console.log(typ, x)
+
+    mapData(typ, { [typ]: [x] })
     // renderOneProject(type, getProject)
 }
 

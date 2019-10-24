@@ -1,9 +1,8 @@
 let path = require('path')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
-let extractPlugin = new ExtractTextPlugin({
-    filename: 'main.css'
-})
+// let ExtractTextPlugin = require('extract-text-webpack-plugin')
+let MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 
 module.exports = {
     entry: './src/js/index.js',
@@ -15,11 +14,22 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.scss$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            },
+            {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader?retainLines=true'
+                }
             },
             {
                 test: /\.html$/,
@@ -40,9 +50,12 @@ module.exports = {
         ]
     },
     plugins: [
-        extractPlugin,
+
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
-        })
+            template: 'src/index.html',
+            filename: 'index.html'
+        }),
+        new MiniCssExtractPlugin(),
+    
     ]
 }

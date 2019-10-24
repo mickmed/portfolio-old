@@ -1,26 +1,28 @@
 class TechnologiesController < ApplicationController
 
     def index
-             
-        @technologies_pics = Technology.joins(:picture_attachment)
-        @technologies_pics.map do |p|
-            p.image_url = p.picture.service_url
-        end
+        @technologies = Technology.all.includes(:projects)
+        
+        render json:{technologies: @technologies}
+        # @technologies_pics = Technology.joins(:picture_attachment)
+        # @technologies_pics.map do |p|
+        #     p.image_url = p.picture.service_url
+        # end
     
-        @technologies_no_pics = Technology.left_joins(:picture_attachment)
-                                  .group(:id)
-                                  .having('COUNT(active_storage_attachments) = 0')
+        # @technologies_no_pics = Technology.left_joins(:picture_attachment)
+        #                           .group(:id)
+        #                           .having('COUNT(active_storage_attachments) = 0')
     
-        render json: { technologies: @technologies_pics + @technologies_no_pics }
+        # render json: { technologies: @technologies_pics + @technologies_no_pics }
       
       end
     
       def show
         @technology = Technology.find(params[:id])
         
-        @technology.picture.attached? && @technology_img = @technology.picture.service_url && @technology.image_url = @technology.img
+        @technology.picture.attached? && @technology_img = @technology.picture.service_url && @technology.image_url = @technology_img
         # puts Project.with_attached_picture.find(params[:id]).present?
-        render json: { technology: @technology, technology_projects: @technology.projects}
+        render json: { technology: @technology, projects: @technology.projects}
       end
     
       def create
@@ -63,6 +65,6 @@ class TechnologiesController < ApplicationController
 
     
       def technology_params
-        params.permit(:id, :name, :icon_url)
+        params.permit(:id, :name, :local_url, :picture)
       end
     end

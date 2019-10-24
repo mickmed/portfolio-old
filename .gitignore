@@ -1,3 +1,4 @@
 app.yaml
 portfolio/config/secrets/
 portfolio/config/credentials.yml.enc
+node_modules

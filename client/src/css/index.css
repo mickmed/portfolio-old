@@ -8,7 +8,7 @@ body {
 
 .main {
   /* width: 100vw; */
-  /* height: 100vh; */
+  height: 100vh;
   max-width:1200px;
   margin:0 auto;
   
@@ -31,6 +31,7 @@ body {
   top:0;
   left:0; 
   /* display:none; */
+  width:50%;
   z-index:1;
   
 }
@@ -171,7 +172,7 @@ a {
 }
 
 .scrollable-page{
-  /* flex:3; */
+    /* flex:6; */
 }
 
 .inner .scrollable-page {
@@ -181,7 +182,7 @@ a {
   /* position: relative; */
   height:100%;
   margin: 0 0;
-  /* width:100%; */
+  width:100%;
 }
 
 .inner .scrollable-page::-webkit-scrollbar {
@@ -189,19 +190,34 @@ a {
 }
 
 .sidebar{
-  /* flex:1; */
+  /* // flex:1; */
   /* background:brown;
   background:brown; */
   border-right:2px solid #d41010;
   padding:1%;
   /* width:30%; */
   position:relative;
-  margin-top:3%;
+  /* margin-top:3%; */
+  min-width:20%;
+  max-width:23%;
+}
+
+.sidebar div.nav{
+  display:flex;
+  justify-content: space-around;
+  font-family:overpass;
+  font-size:.6em;
+  margin-bottom:3%;
+  
+  /* background:green; */
 }
 .sidebar .email {
   text-align:center;
-  font-size: .5em;
   font-family:'Overpass';
+}
+.sidebar .email a{
+  font-size: 3em;
+  display:none;
 }
 /*//ABOUT//////////////////////*/
 /*  */
@@ -434,10 +450,7 @@ ul.techs li img{
   opacity:0;
  
   animation: project-opacity 1s linear forwards;
-  /* transform: skew(-10deg); */
-  
-  /* background: #ccc; */
-  /* position: relative; */
+ 
  
   z-index: 2;
   overflow: hidden;
@@ -480,10 +493,7 @@ ul.techs li img{
 .modal button{
   font-size:.5em;
 }
-/* .project-3-modal .project-title h2{
- 
-  font-size:14px;
-} */
+
 .tech-header{
   display:block;
   position:relative;
@@ -558,10 +568,9 @@ ul.techs li img{
     font-size: calc(.7em + 1vw);
   }
   .fab.fa-linkedin, .fab.fa-github {
-    /* font-size: 50%; */
-    /* transform:translateY(50%); */
+   
     font-size:1em;
-    /* margin:auto 0; */
+   
   }
   .fas.fa-caret-down{
     display:none;
@@ -569,7 +578,10 @@ ul.techs li img{
   nav{
     display:flex;
   }
-
+  .sidebar .email a{
+    font-size:.75em;
+    display:inline;
+  }
   .proj-wrapper{
     width:47%;
   }
@@ -599,7 +611,7 @@ ul.techs li img{
   .projects{
     padding-top:1.5%;
   }
-  .modal .project-title h2{
+  .modal .project-title{
     font-size:1.5em;
   }
  
