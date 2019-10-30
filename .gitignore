@@ -1,5 +1,7 @@
 app.yaml
 portfolio/config/database.yml
+portfolio/config/storage.yml
+
 portfolio/config/secrets/
 portfolio/config/credentials.yml.enc
 node_modules
