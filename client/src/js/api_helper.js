@@ -18,14 +18,9 @@ export let getResultss = async (type) => {
 
 export const showSingleItemm = async (event, obj, type) => {
     // event.preventDefault()
-
-    // let resDiv = type === 'projects' ? document.querySelector('.projects') : document.querySelector('.technologies')
-    // resDiv.style.display = "none"
-
-
     console.log('inside function', obj.id)
 
-    const getProject = await fetch(`${BASE_URL}/${type}/${obj.id}`)
+    const result = await fetch(`${BASE_URL}/${type}/${obj.id}`)
         .then(function (res) {
             console.log(res.json)
             return res.json()
@@ -33,7 +28,7 @@ export const showSingleItemm = async (event, obj, type) => {
             console.log(red)
             return red
         })
-    return getProject
+    return result
     // let typ = type === 'projects' ? 'project' : 'technology'
     // console.log(typ)
     // let x = getProject[typ]

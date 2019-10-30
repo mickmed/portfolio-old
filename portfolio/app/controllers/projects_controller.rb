@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     @project.picture.attached? && @project_img = @project.picture.service_url 
     @project.image_url = @project_img
     # puts Project.with_attached_picture.find(params[:id]).present?
-    render json: { project: @project}
+    render json: { project: @project, technologies: @project.technologies}
   end
 
   def create
