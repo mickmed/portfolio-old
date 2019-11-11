@@ -65,6 +65,6 @@ class TechnologiesController < ApplicationController
 
     
       def technology_params
-        params.permit(:id, :name, :local_url, :picture)
+        params.permit(:id, :name, :local_url, :picture, project_ids:[])
       end
     end

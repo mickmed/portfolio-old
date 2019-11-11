@@ -11,11 +11,15 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = {
-    entry: './src/js/index.js',
+    entry: {
+        main: './src/js/index.js',
+        uploader: './src/js/uploader.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        // publicPath: '/dist'
+        filename: '[name].js',
+        chunkFilename: '[id].bundle_[chunkhash].js',
+        sourceMapFilename: '[file].map'
     },
     module: {
         rules: [
@@ -47,8 +51,8 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: 'src/img/',
+                            name: '[path]/[name].[ext]',
+                            outputPath: '/',
                             // publicPath: 'src/img/'
                         }
                     }]
@@ -59,7 +63,13 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            chunks: ['main']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/uploader.html',
+            filename: 'uploader.html',
+            chunks: ['uploader']
         }),
         new MiniCssExtractPlugin(),
     

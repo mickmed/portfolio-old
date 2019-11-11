@@ -1,5 +1,5 @@
 
-import { makeElementt } from './dom_helper.js'
+import { makeElement } from './dom_helper.js'
 
 
 // let text = 'On a day to day basis I am immersed in code. As a teaching assistant at General Assembly everyday, day of my life'
@@ -10,11 +10,13 @@ export let resumeAside = () => {
     let sidebar = document.querySelector('.sidebar')
     console.log(sidebar)
     sidebar.removeChild(sidebar.childNodes[3])
-    console.log(sidebar.childNodes)
-    let div = makeElementt('div', 'btn-wrapper', sidebar, {})
-    let aboutBtn1 = makeElementt('btn', 'about-btn', div, { innerText: '.PDF', id: 'about-btn' })
-    let aboutBtn2 = makeElementt('btn', 'about-btn', div, { innerText: '.DOC', id: 'about-btn' })
-    let aboutBtn3 = makeElementt('btn', 'about-btn', div, { innerText: '.JPG', id: 'about-btn' })
+    // console.log(sidebar.childNodes)
+    let div = makeElement('div', 'btn-wrapper', sidebar, {})
+    let aboutBtn1 = makeElement('btn', 'about-btn', div, { innerText: '.PDF', id: 'about-btn' })
+    let aboutBtn2 = makeElement('btn', 'about-btn', div, { innerText: '.DOC', id: 'about-btn' })
+    let aboutBtn3 = makeElement('btn', 'about-btn', div, { innerText: '.JPG', id: 'about-btn' })
+    let aboutBtn4 = makeElement('btn', 'about-btn', div, { innerText: 'GoogleDoc', id: 'about-btn' })
+
     
 
 

@@ -1,4 +1,4 @@
-import { makeElementt } from './dom_helper.js'
+import { makeElement } from './dom_helper.js'
 
 
 // let text = 'On a day to day basis I am immersed in code. As a teaching assistant at General Assembly everyday, day of my life'
@@ -11,13 +11,13 @@ export let aboutAside = () => {
     sidebar.removeChild(sidebar.childNodes[3])
     console.log(sidebar.childNodes)
     // mainContent.innerText = ''
-    let div = makeElementt('div', 'btn-wrapper', sidebar, {})
+    let div = makeElement('div', 'btn-wrapper', sidebar, {})
 
-    // let aboutBtn = makeElementt('button', 'about-btn', div, {innerText:'Download', id:'about-btn'})
-    let aboutBtn4 = makeElementt('btn', 'about-btn', div, { innerText: 'LinkedIn', id: 'about-btn' })
-    let aboutBtn5 = makeElementt('btn', 'about-btn', div, { innerText: 'Angelist', id: 'about-btn' })
-    let aboutBtn6 = makeElementt('btn', 'about-btn', div, { innerText: 'BuiltInNyc', id: 'about-btn' })
-    let aboutBtn7 = makeElementt('btn', 'about-btn', div, { innerText: 'GlassDoor', id: 'about-btn' })
+    // let aboutBtn = makeElement('button', 'about-btn', div, {innerText:'Download', id:'about-btn'})
+    let aboutBtn4 = makeElement('btn', 'about-btn', div, { innerText: 'LinkedIn', id: 'about-btn' })
+    let aboutBtn5 = makeElement('btn', 'about-btn', div, { innerText: 'Angelist', id: 'about-btn' })
+    let aboutBtn6 = makeElement('btn', 'about-btn', div, { innerText: 'BuiltInNyc', id: 'about-btn' })
+    let aboutBtn7 = make('btn', 'about-btn', div, { innerText: 'GlassDoor', id: 'about-btn' })
 
     // projects.innerHTML = ""
 }

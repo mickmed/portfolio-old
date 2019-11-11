@@ -7,12 +7,13 @@ import { aboutAside } from './aboutAside'
 
 
 export let main = (type, data=[]) => {
-  console.log('main --> type', type)
-  type === 'projects' && projects(type, data)
-  type === 'projects' && navBar(data)
+  // console.log('main --> type', type)
+  //  type === 'projects' && navBar(data)
+  // type === 'projects' && projects(type, data)
+ 
   
-  type === 'about' && about()
-  type === 'resume' && resume()
+  // type === 'about' && about()
+  // type === 'resume' && resume()
 
   
 }

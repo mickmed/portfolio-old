@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   root to: 'projects#index'
   resources :projects
-
-  # root to: 'technologies#index'
   resources :technologies
+  resources :traits
 end

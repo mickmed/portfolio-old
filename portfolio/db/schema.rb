@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_231002) do
+ActiveRecord::Schema.define(version: 2019_10_31_164940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2019_10_23_231002) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "attributes", force: :cascade do |t|
+    t.string "name"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -51,12 +58,23 @@ ActiveRecord::Schema.define(version: 2019_10_23_231002) do
     t.bigint "technology_id", null: false
   end
 
+  create_table "projects_traits", id: false, force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "trait_id", null: false
+  end
+
   create_table "technologies", force: :cascade do |t|
     t.string "name"
     t.string "local_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+  end
+
+  create_table "traits", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

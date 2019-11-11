@@ -1,45 +1,14 @@
-
-import { sidebar } from './sidebar.js'
-import { main } from './main.js'
-
-import { showSingleItemm } from './api_helper'
+import { projects } from './projects'
+import { navbar } from './nav'
+import { technologies } from './technologies.js'
+import { person } from './person.js'
 import '../css/index.css'
 
+person()
+technologies('technologies')
+
+navbar()
+projects('projects')
 
 
-
-let renderAbout = (res) => {
-  let projects = document.querySelector('.projects')
-  projects.innerHTML = ""
-
-}
-
-
-
-
-
-let getSingle = async function (event, e, type) {
-  console.log('e', e)
- 
-  let res = await showSingleItemm(event, e, type)
-  console.log('results', res)
-  renderProjectTitles(res)
-  return res
-}
-
-
-sidebar('technologies')
-main('projects')
-
-
-
-// function adjustWidth() {
-//   let parent = document.querySelector('.scrollable-page')
-//   let child = document.getElementById('nav')
-//   child.style.width = parent.offsetWidth * .95 + 'px'
-//   // console.log(typeof parent.offsetWidth)
-//   // console.log(child)
-// }
-
-// // adjustWidth()
 

@@ -8,8 +8,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all 
+    @project_pics = Project.joins(:picture_attachment)
     render json: {projects: @projects}
-    # @project_pics = Project.joins(:picture_attachment)
+
     # @project_pics.map do |p|
     #     p.image_url = p.picture.service_url
     # end
@@ -31,15 +32,15 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    # puts params()
-    puts "request body read", request.body.read
+    puts 'params', params()
+    # puts "request body read", request.body.read
     @project = Project.new(project_params)
-    puts @project 
+    # puts '@project', @project 
     @project.save
-    logger.debug "logger debug project #{@project}"
-    p "project inspect", @project.inspect
-
-    # render json: {"message":"posted"}
+    # logger.debug "logger debug project #{@project}"
+    # p "project inspect", @project.inspect
+    puts Project.last.title
+    render json: {"message":"posted"}
   end
 
   def update
@@ -69,7 +70,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:id, :title, :site_url, :local_url, :picture)
+    params.permit(:id, :title, :site_url, :local_url, :picture, technology_ids:[])
   end
 end
 
