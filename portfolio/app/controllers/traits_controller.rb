@@ -2,8 +2,11 @@ class TraitsController < ApplicationController
 
     def index
         @traits = Trait.all.includes(:projects)
-        
-        render json:{traits: @traits}
+        @projects = []
+        @traits.each_with_index do |trait, i|
+          @projects.push(trait.projects)
+        end
+        render json:{traits: @traits, projects: @projects}
         # @traits_pics = trait.joins(:picture_attachment)
         # @traits_pics.map do |p|
         #     p.image_url = p.picture.service_url

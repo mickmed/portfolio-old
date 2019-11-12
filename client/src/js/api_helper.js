@@ -1,8 +1,8 @@
 import { mapData } from './dom_helper'
 import { makeElement } from './dom_helper'
 
-// let BASE_URL = 'http://localhost:3000'
-let BASE_URL = 'https://portfolio-mick.appspot.com'
+let BASE_URL = 'http://localhost:3000'
+// let BASE_URL = 'https://portfolio-mick.appspot.com'
 
 export let getResultss = async (type) => {
 
@@ -20,9 +20,7 @@ export let getResultss = async (type) => {
 }
 
 export let getResults = async (type) => {
-    // console.log(state[type], type)
-    // console.log(Object.keys(state[type])[0])
-    // console.log('hi')
+
     let results = await fetch(BASE_URL + '/' + type)
         .then((res) => {
             // console.log(res.json)
@@ -31,62 +29,53 @@ export let getResults = async (type) => {
         .then((ans => {
             return ans
         }))
-    // console.log(results)
-    // state[type] = results
-    // state.switch = type
-    // mapData(type, results)
-    // console.log('type, results', type, results)
+    
     return (type, results)
 
-    // console.log('here')
-    // return (type, state[type])
-
-    // mapData(type, state[type])
-    // }
 }
 
 
 
-export const makeNewItem = async (event, type, data) => {
-    event.preventDefault()
+export const makeNewItem = async (event, type, obj, relType) => {
+    event.preventDefault() 
+    console.log('type,relType', type, relType)
+    let fields = Object.keys(obj)
+    let form = new FormData();
 
+    for (let i = 0; i < fields.length; i++) {
+        fields[i] !== 'id' && fields[i] !== 'created_at' && fields[i] !== 'updated_at' &&
+        form.append(fields[i], document.querySelector('.'+fields[i]).value)
+    }
+   console.log(form)
     let chkboxs = document.querySelectorAll('.chkbox')
     console.log(chkboxs)
-
-
-    let title = type === ('projects' || type === 'project') && document.querySelector('.title')
-    console.log(type, 'title', title.value)
-    let site_url = type === ('projects' || type === 'project') && document.getElementById('site_url' + data.id)
-    let local_url =
-        document.getElementById('local_url' + data.id)
-    // console.log('local_url', local_url.value)
-    // let files = type === 'projects' && document.getElementById('projImg' + data.id)
-    let name = (type === 'technologies' || type === 'technology' || type === 'traits') && document.getElementById('name' + data.id)
-    let files = document.querySelector('#' + type + 'Img' + data.id)
-    let form = new FormData();
+    let files = document.querySelector('#' + type + 'Img' + obj.id)
+    
     if (files && files.files.length !== 0) {
         form.append('picture', files.files[0])
     }
-    type === 'projects' && form.append('title', title.value)
-    type === 'projects' && form.append('site_url', site_url.value)
-    type === 'technologies' || type === 'traits' && form.append('name', name.value)
-    type === 'projects' || type === 'technologies' && form.append('local_url', local_url.value)
+    
+    if(type === 'projects'){
+        relType = 'technology_ids[]'
+    }else{
+        relType = 'project_ids[]'
+    }
     if (chkboxs) {
         chkboxs.forEach(cb => {
             // console.log(cb.value)
             if (cb.checked) {
                 console.log(cb.value)
-                form.append('technology_ids[]', cb.value)
+                form.append(relType, cb.value)
             }
 
         })
     }
 
-    const results = await fetch(BASE_URL + '/projects', {
+    const results = await fetch(BASE_URL + '/' + type, {
         method: 'post',
         body: form
     }).then(function (res) {
-        console.log(res)
+        // console.log(res)
         return res.json()
     })
     return results
@@ -105,58 +94,67 @@ export const destroyProject = async (event, e, type) => {
             return des
         })
     let results = await getResults(type)
-    let res = await getResults('projects')
+    let res = await getResults(type)
     console.log(res)
-    // console.log(Object.keys(res)[0])
-    mapData(Object.keys(res)[0], res)
+    
+    mapData(res)
 }
 
-export const updateProject = async (event, data, type) => {
-    console.log('data, type', data, type)
+let pluralize = (word) => {
+    if(word.slice(-1) === 's'){
+        return word
+    }
+    if(word.slice(-1) === 'y'){
+       return word.slice(0, -1) + 'ies'
+    }else{
+        return word + 's'
+    } 
+}
+let singularize = (word) => {
+    if(word.substr(word.length - 3) === 'ies'){
+        console.log('wow')
+        return word.slice(0, -3) + 'y'
 
+    }else{
+        return word.slice(0, -1)
+    }
+}
+
+
+
+export const updateProject = async (event, obj, type, relType) => {
+    console.log('obj, type', obj, relType)
+    
     event.preventDefault()
-    if (type === 'project') {
-        type = 'projects'
-    }
-    if (type === 'technology') {
-        type = 'technologies'
-    }
-    if (type === 'trait') {
-
-        type = 'traits'
-
-    }
-    let chkboxs = document.querySelectorAll('.chkbox')
-    console.log('updateItem ---> chkboxs', chkboxs)
-    let title = type === ('projects' || type === 'project') && document.getElementById('title' + data.id)
-    let site_url = type === ('projects' || type === 'project') && document.getElementById('site_url' + data.id)
-    let local_url =
-        document.getElementById('local_url' + data.id)
-    // console.log('local_url', local_url.value)
-    // let files = type === 'projects' && document.getElementById('projImg' + data.id)
-    let name = (type === 'technologies' || type === 'technology' || type === 'traits') && document.getElementById('name' + data.id)
-    let files = document.querySelector('#' + type + 'Img' + data.id)
+    type = pluralize(type)
+    let fields = Object.keys(obj)
+    console.log(fields)
     let form = new FormData();
+
+    for (let i = 0; i < fields.length; i++) {
+        
+        (fields[i] !== 'id' && fields[i] !== 'created_at' && fields[i] !== 'updated_at') &&
+        // console.log(document.getElementById(fields[i] + obj.id).value) &&
+        // console.log(fields[i]) &&
+        form.append(fields[i], document.getElementById(fields[i] + obj.id).value)
+    }
+    // form.append('title','blahj')
+    console.log(form.FormData)
+    let chkboxs = document.querySelectorAll('.chkbox')
+  
+    let files = document.querySelector('#' + type + 'Img' + obj.id)
+    
     if (files && files.files.length !== 0) {
         form.append('picture', files.files[0])
     }
-    type === 'projects' && form.append('title', title.value)
-    type === 'projects' && form.append('site_url', site_url.value)
-    type === 'technologies' || type === 'traits' && form.append('name', name.value)
-    type === 'projects' || type === 'technologies' && form.append('local_url', local_url.value)
+    
 
 
-    let relName = () => {
-        switch (type) {
-            case 'projects':
-                return 'technology'
-            case 'technologies':
-                return 'project'
-            case 'traits':
-                return 'project'
-        }
+    if(type === 'projects'){
+        relType = 'technology_ids[]'
+    }else{
+        relType = 'project_ids[]'
     }
-    let relDataName = relName()
 
 
     if (chkboxs) {
@@ -164,17 +162,19 @@ export const updateProject = async (event, data, type) => {
             console.log('cbvalue', cb.value)
             if (cb.checked) {
                 console.log(cb.value)
-                form.append(relDataName + '_ids[]', cb.value)
+                form.append(relType, cb.value)
             }
 
         })
     }
 
 
+  
+  
 
 
 
-    let update = await fetch(BASE_URL + '/' + type + '/' + data.id, {
+    let update = await fetch(BASE_URL + '/' + type + '/' + obj.id, {
         method: 'put',
         body: form
     })
@@ -186,44 +186,40 @@ export const updateProject = async (event, data, type) => {
             // console.log(ans)
             return ans
         })
-        .then(ans => {
-            // console.log(ans)
-            return ans
-        })
+        // .then(ans => {
+        //     // console.log(ans)
+        //     return ans
+        // })
         .then(async data => {
             // console.log(data)
-            if (data[type] === 'project') {
-                type = 'projects'
-            }
-            if (data[type] === 'technology') {
-                type = 'technologies'
-            }
-            if (data[type] === 'trait') {
+            // if (obj[type] === 'project') {
+            //     type = 'projects'
+            // }
+            // if (obj[type] === 'technology') {
+            //     type = 'technologies'
+            // }
+            // if (obj[type] === 'trait') {
 
-                type = 'traits'
+            //     type = 'traits'
 
-            }
+            // }
             let res = await getResults(type)
             // console.log(Object.keys(res)[0], res)
-            mapData(Object.keys(res)[0], res)
+            mapData( res)
             return data
 
         })
-    if (update.length !== 0) {
-
-    }
-    let res = await getResults(type)
-    // console.log(Object.keys(res)[0], res)
-    mapData(Object.keys(res)[0], res)
+   
 
 
 
 }
 
 
-export const getOneProject = async (event, obj, type) => {
-    event.preventDefault()
-    // console.log(type)
+export const getOneProject = async (evt, obj, type) => {
+    console.log(evt)
+    evt.preventDefault()
+    console.log('getOneProj-->type', type)
     let resDiv = document.querySelector('.' + type)
 
     resDiv.style.display = "none"
@@ -244,7 +240,7 @@ export const getOneProject = async (event, obj, type) => {
     // console.log('shoonga')
     if (type === 'projects') {
         type = 'project'
-    }type
+    } type
     if (type === 'technologies') {
         type = 'technology'
     }
@@ -260,7 +256,7 @@ export const getOneProject = async (event, obj, type) => {
     let data = { [type]: [allData[type]] }
     let relData = { [Object.keys(allData)[1]]: allData[Object.keys(allData)[1]] }
     //    console.log('allData', allData, 'data', data, 'reldata', relData)
-    mapData(type, data)
+    mapData(data)
     mapRelPrjs(relData)
 
 }

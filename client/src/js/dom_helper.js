@@ -21,24 +21,6 @@ export let makeElement = (element_type, className, parent, obj = {}) => {
     return el
 }
 
-export let mapData = (type, data, event) => {
-    // if(type === 'project'){
-    //     data = [data][0]
-    // }
-    console.log('mapdata --> data', data)
-    event && event.preventDefault()
-    let currentDiv = makeCurrentDiv(type)
-    let makeNewBtn = makeElement('button', 'makeNew', currentDiv, { innerText: "Make New" })
-    makeNewBtn.addEventListener('click', async (event) => {
-        await makeNewForm(event, type)
-    })
-
-    data[type].map(obj => {
-        let form = makeForm(type, obj)
-        currentDiv.appendChild(form)
-    })
-}
-
 export let makeCurrentDiv = (type) => {
     if (document.querySelector('.current')) {
         document.querySelector('.current').remove()
@@ -49,60 +31,80 @@ export let makeCurrentDiv = (type) => {
     return currentDiv
 }
 
-export let makeForm = (type, obj, newItem = '') => {
+
+export let mapData = (data, event) => {
+    // event && event.preventDefault()
+    // console.log('mapdata --> data', data)
+    let type = Object.keys(data)[0]
+    let relType = Object.keys(data)[1]
+    // console.log(relType)
+    // console.log('mapData-->type', type)
+    // console.log(Object.keys(data[Object.keys(data)[0]][0]))
+    let currentDiv = makeCurrentDiv(type)
+    let makeNewBtn = makeElement('button', 'makeNew', currentDiv, { innerText: "Make New" })
+    makeNewBtn.addEventListener('click', (event) => {
+        let currentDiv = makeCurrentDiv(type)
+        let keys = Object.keys(data[Object.keys(data)[0]][0])
+        // console.log(keys)
+        let obj = {}
+        keys.forEach(key => {
+            obj[key] = key
+        })
+      
+        let form = makeForm(obj, event)
+        let formButtons = newItemBtns(type, relType, obj, form)
+        let chkbxs = checkboxes(relType)
+        currentDiv.appendChild(form)
+    })
+
+    data[type].map(obj => {
+        let form = makeForm(obj)
+        let formButtons = makeFormBtns(type, obj, form, relType)
+        currentDiv.appendChild(form)
+    })
+}
+
+
+
+
+export let makeForm = (obj, newItem = '') => {
     let form = document.createElement('form')
-    console.log('makForm ---> data', obj)
+    // console.log('makeForm --> obj', obj)
+    // console.log('makeForm --> Obkeys[0]', Object.keys(obj))
+    let fields = Object.keys(obj)
+    // console.log('makeForm --> fields', fields)
     let inputWrapper = makeElement('div', 'input-wrapper', form)
     // console.log(inputWrapper, form)
-    if (type === 'projects' || type === 'project') {
-        makeElement('input', 'title', inputWrapper, { name: 'title', id: 'title' + obj.id, value: obj.title || 'title' })
-        makeElement('input', 'subtitle', inputWrapper, { name: 'subtitle', id: 'subtitle' + obj.id, value: obj.subtitle || 'subtitle' })
-        makeElement('input', 'site_url', inputWrapper, { name: 'url', id: 'site_url' + obj.id, value: obj.site_url || 'site_url' })
 
+    for (let i = 0; i < fields.length; i++) {
+        // console.log(fields[i])
+        fields[i] !== 'created_at' && fields[i] !== 'updated_at' &&
+        makeElement('input', fields[i], inputWrapper,
+            
+            {
+                name: fields[i],
+                id: fields[i] + obj.id,
+                value: obj[fields[i]] || fields[i]
+            })
     }
-    if (type === 'technologies' || type === 'technology' || type === 'traits' || type === 'trait') {
-        let name = makeElement('input', 'name', inputWrapper, { name: 'name', id: 'name' + obj.id, value: obj.name || 'name'})
-    }
-    if (type !== 'traits' && type !== 'trait') {
-        let local_url = makeElement('input', 'local_url', inputWrapper, { name: 'url', id: 'local_url' + obj.id, value: obj.local_url || 'local_url' })
-    }
-    let tech_projs = (type === 'technology') &&
-        makeElement('input', 'tech_prod', inputWrapper, {})
-
-    let buttons = (newItem) ? newItemBtns(type, obj, form) : makeFormBtns(type, obj, form)
-    // console.log('mf-buttons', buttons)
-    if(type === 'projects' || type === "project"){
-        type = 'technologies'
-    }
-    if(type === 'technologies' || type === 'traits'){
-        type = 'projects'
-    }
-    console.log('typetype', type)
-    let chkbxs = newItem && checkboxes(type)
-    // console.log(chkbxs)
-    form.appendChild(buttons)
-
-
     return form
 }
 
-export const makeFormBtns = (type, obj, parent) => {
-    if (type === 'project') {
-        type = 'projects'
-    }
-    console.log('makeFromBtns ---> type', type)
+export const makeFormBtns = (type, obj, parent, relType) => {
+    // console.log(obj)
+    // console.log('makeFromBtns ---> type', type)
     let buttons = makeElement('div', 'buttons', parent)
 
     let updateBtn = makeElement('button', 'update-btn', buttons, { innerText: 'edit' })
     updateBtn.addEventListener('click', (event) => {
         event.preventDefault()
-        updateProject(event, obj, type)
+        updateProject(event, obj, type, relType)
     })
 
     let destroyBtn = makeElement('button', 'destroy-btn', buttons, { innerText: 'delete' })
     destroyBtn.addEventListener('click', async (event) => {
-        let check = confirm(`are you sure you wanna destroy ${obj.name}`)
-        console.log(check)
+        let check = confirm(`are you sure you wanna destroy ` + (obj.title || obj.name))
+        // console.log(check)
         if (check) {
             destroyProject(event, obj, type)
         }
@@ -116,8 +118,8 @@ export const makeFormBtns = (type, obj, parent) => {
     })
 
     let getOneBtn = makeElement('button', 'getOneBtn', buttons, { innerText: 'goto' })
-    getOneBtn.addEventListener('click', () => {
-        getOneProject(event, obj, type)
+    getOneBtn.addEventListener('click', (evt) => {
+        getOneProject(evt, obj, type)
     })
     let imgUpload = type !== 'traits' && makeElement('input', 'imgUpload', buttons, { name: 'image', id: type + 'Img' + obj.id, type: 'file' })
     if (type !== 'traits' && type !== 'trait') {
@@ -126,12 +128,14 @@ export const makeFormBtns = (type, obj, parent) => {
     return buttons
 }
 
-export const newItemBtns = (type, obj, parent) => {
-    console.log('makeNewItemBtns ---> type', type)
+export const newItemBtns = (type, relType, obj, parent) => {
+    console.log('makeNewItemBtns ---> type', type, relType)
     let buttons = makeElement('div', 'buttons', parent)
-    let getOneBtn = makeElement('button', 'getOneBtn', buttons, { innerText: 'add new' })
-    getOneBtn.addEventListener('click', (event) => {
-        makeNewItem(event, type, obj)
+    let addNewBtn = makeElement('button', 'getOneBtn', buttons, { innerText: 'add new' })
+    // let checkboxes = checkboxes(type)
+
+    addNewBtn.addEventListener('click', (event) => {
+        makeNewItem(event, type, obj, relType)
     })
     return buttons
 }
@@ -140,21 +144,12 @@ export const newItemBtns = (type, obj, parent) => {
 
 export const checkboxes = async (type) => {
     console.log('checkboxes ---> type', type)
-    let relName = () => {
-        switch (type) {
-            case 'projects':
-                return 'technology'
-            case 'technologies':
-                return 'project'
-            case 'traits':
-                return 'project'
-        }
-    }
+ 
     let name = type === ('technologies' || type === 'traits') ? 'name' : 'title'
     let res = await getResults(type)
     let buttons = document.querySelector('.buttons')
-    console.log('checkboxes ---> buttons', buttons )
-    console.log('checkboxes ---> res', res)
+    // console.log('checkboxes ---> buttons', buttons)
+    // console.log('checkboxes ---> res', res)
     res[type].map(obj => {
         let chkbox = makeElement('input', 'chkbox', buttons, { type: 'checkbox', value: obj.id })
         let text = document.createTextNode(obj[name])
@@ -164,21 +159,7 @@ export const checkboxes = async (type) => {
 
 }
 
-export const makeNewForm = (event, type) => {
-    let currentDiv = makeCurrentDiv(type)
-
-    let form = makeForm(type, [], true)
-    currentDiv.appendChild(form)
-}
 
 
-
-// export function addEL(el, evtType, name, proj) {
-//     // console.log(proj)
-//     el.addEventListener(evtType, handleInput = (event) => {
-//         // console.log('eventtargetvalue', event.target.value)
-//         state[name] = event.target.value || proj.title
-//     })
-// }
 
 

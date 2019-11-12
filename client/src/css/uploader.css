@@ -4,9 +4,7 @@ body{
     background:seashell;
 }
 
-.uploader-container{
-    
-}
+
 
 .current{
     margin:1%;
@@ -35,6 +33,7 @@ form > * {
 .input-wrapper{
     display:flex;
     justify-content: space-between;
+    flex-wrap:wrap;
     
 }
 .input-wrapper input{
@@ -49,7 +48,10 @@ form > * {
     width:10%;
 }
 
-
+.id{
+    width:5%;
+    background:green;
+}
 
 
 

@@ -2,8 +2,13 @@ class TechnologiesController < ApplicationController
 
     def index
         @technologies = Technology.all.includes(:projects)
+
+        @projects = []
+        @technologies.each_with_index do |tech, i|
+          @projects.push(tech.projects)
+        end
         
-        render json:{technologies: @technologies}
+        render json:{technologies: @technologies, projects: @projects}
         # @technologies_pics = Technology.joins(:picture_attachment)
         # @technologies_pics.map do |p|
         #     p.image_url = p.picture.service_url
@@ -65,6 +70,6 @@ class TechnologiesController < ApplicationController
 
     
       def technology_params
-        params.permit(:id, :name, :local_url, :picture, project_ids:[])
+        params.permit(:id, :name, :image_url, :local_url, :picture, project_ids:[])
       end
     end

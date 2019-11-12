@@ -7,9 +7,15 @@ class ProjectsController < ApplicationController
   #   end
 
   def index
-    @projects = Project.all 
+    @projects = Project.all
+   
+    @technologies = []
+    @projects.each_with_index do |proj, i|
+      @technologies.push(proj.technologies)
+    end
+   
     @project_pics = Project.joins(:picture_attachment)
-    render json: {projects: @projects}
+    render json: {projects: @projects, technologies: @technologies}
 
     # @project_pics.map do |p|
     #     p.image_url = p.picture.service_url
@@ -58,7 +64,10 @@ class ProjectsController < ApplicationController
     logger.debug "logger debug project #{@project}"
     p "project inspect", @project.inspect
     # head :no_content
-    render json: {project: @project, pic: @project.picture.service_url}
+    render json: {
+      project: @project, 
+      # pic: @project.picture && @project.picture.service_url
+    }
   end
 
   def destroy
@@ -70,7 +79,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:id, :title, :site_url, :local_url, :picture, technology_ids:[])
+    params.permit(:id, :title, :subtitle, :site_url, :image_url, :local_url, :picture, technology_ids:[])
   end
 end
 
