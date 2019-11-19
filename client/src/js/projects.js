@@ -3,13 +3,14 @@ import { makeElement } from './dom_helper'
 import { getResults } from './api_helper'
 import { showSingleItemm } from './api_helper'
 import { technologies } from './technologies';
+import { navbar } from './nav';
 const pathToImg = require.context('../img/', true);
 // console.log(pathToImg)
 
 export let projects = async (type, data = []) => {
 
   let res = data.length === 0 ? await getResults(type) : data
-  console.log(res)
+  // console.log(res)
   if (Object.keys(res)[0] === 'project') {
     res.project = [res.project]
     // console.log('rest', res)
@@ -22,8 +23,8 @@ export let projects = async (type, data = []) => {
   // mainContent.innerHTML = ""
   
   let projectsDiv = makeElement('div', 'projects', mainContent, { id: 'projects' })
-  projectsDiv.innerHTML = ""
-   console.log(type)
+  // projectsDiv.innerHTML = ""
+   console.log('projecgt data', res)
   res[type].forEach((e, i) => {
     // console.log('src/'+ e.local_url)
     let projWrapper = makeElement('div', "proj-wrapper", projectsDiv, {})
@@ -31,19 +32,22 @@ export let projects = async (type, data = []) => {
     if (type === 'project' && window.matchMedia("(min-width: 600px)").matches) {
       // console.log(projWrapper)
       projWrapper.style.width = '110%'
-      // console.log('here')
+      projWrapper.style.fontSize = '2em'
+     
+    
     }
 
     let project = makeElement('div', 'project', projWrapper)
     project.classList.add('project' + e.id)
     project.addEventListener('click', async function (evt) {
       let res = await showSingleItemm(evt, e, 'projects')
-      console.log('res event', res)
+      // console.log('res event', res)
       let project = {project:e}
-      console.log('project', project)
+      // console.log('project', project)
       let technologiesData = {'technologies':res.technologies}  
       // console.log('tech', technologies)
       document.querySelector('.main-content').innerHTML = ''
+      navbar({project:e})
       projects('project', project)
       technologies('technologies', technologiesData)
     })    // let anchor = makeElement('a', 'proj-link', project, { href: e.site_url, target: "_blank" })
@@ -54,6 +58,18 @@ export let projects = async (type, data = []) => {
     let modal = makeElement('div', 'modal', imgWrapper, {})
     modal.classList.add('project-' + e.id + '-modal')
     let h2 = makeElement('h2', 'project-title', modal, { innerText: e.title })
+    let traitsDiv = makeElement('div', 'traits-div', modal)
+    let h3 = makeElement('h3', 'trait', traitsDiv, {innerText:e.title})
+
+
+    if (type === 'project' && window.matchMedia("(min-width: 600px)").matches) {
+      modal.style.backgroundImage = 'linear-gradient(to right, rgba(0, 0, 0, 0.99),rgba(255, 255, 255, 1) )'
+      h3.style.visibility= "visible"
+
+    }
+   
+    console.log('modal', modal)
+    
   })
 }
 

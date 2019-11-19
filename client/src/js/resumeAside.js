@@ -1,5 +1,6 @@
 
 import { makeElement } from './dom_helper.js'
+import { resume } from './resume'
 
 
 // let text = 'On a day to day basis I am immersed in code. As a teaching assistant at General Assembly everyday, day of my life'
@@ -11,11 +12,29 @@ export let resumeAside = () => {
     console.log(sidebar)
     sidebar.removeChild(sidebar.childNodes[3])
     // console.log(sidebar.childNodes)
+
+    let buttons = ['.JPG', '.PDF', '.DOC']
     let div = makeElement('div', 'btn-wrapper', sidebar, {})
-    let aboutBtn1 = makeElement('btn', 'about-btn', div, { innerText: '.PDF', id: 'about-btn' })
-    let aboutBtn2 = makeElement('btn', 'about-btn', div, { innerText: '.DOC', id: 'about-btn' })
-    let aboutBtn3 = makeElement('btn', 'about-btn', div, { innerText: '.JPG', id: 'about-btn' })
-    let aboutBtn4 = makeElement('btn', 'about-btn', div, { innerText: 'GoogleDoc', id: 'about-btn' })
+
+
+    buttons.forEach((btn) => {
+        // let anchor = makeElement('a', 'anchor', div, {href:'http://mickmedium.com'})
+
+
+        let resBtn = makeElement('button', 'about-btn', div, { innerText: btn, id: 'about-btn' })
+        resBtn.addEventListener('click', (e) => {
+            // console.log(e.target.innerText)
+            resume(e.target.innerText)
+        })
+
+    })
+    
+    // let divo = makeElement('div', 'div', div, {innerText:'down'})
+    // divo.addEventListener('click', (e)=> {
+    //     console.log('here')
+    //     window.open('http://www.smkproduction.eu5.org','_blank')
+
+    // })
 
     
 

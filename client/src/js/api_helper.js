@@ -95,7 +95,7 @@ export const destroyProject = async (event, e, type) => {
         })
     let results = await getResults(type)
     let res = await getResults(type)
-    console.log(res)
+    // console.log(res)
     
     mapData(res)
 }
@@ -112,7 +112,7 @@ let pluralize = (word) => {
 }
 let singularize = (word) => {
     if(word.substr(word.length - 3) === 'ies'){
-        console.log('wow')
+        // console.log('wow')
         return word.slice(0, -3) + 'y'
 
     }else{
@@ -123,12 +123,11 @@ let singularize = (word) => {
 
 
 export const updateProject = async (event, obj, type, relType) => {
-    console.log('obj, type', obj, relType)
-    
+    // console.log('obj, type', obj, relType)
     event.preventDefault()
     type = pluralize(type)
     let fields = Object.keys(obj)
-    console.log(fields)
+    // console.log(fields)
     let form = new FormData();
 
     for (let i = 0; i < fields.length; i++) {
@@ -138,41 +137,28 @@ export const updateProject = async (event, obj, type, relType) => {
         // console.log(fields[i]) &&
         form.append(fields[i], document.getElementById(fields[i] + obj.id).value)
     }
-    // form.append('title','blahj')
-    console.log(form.FormData)
     let chkboxs = document.querySelectorAll('.chkbox')
   
     let files = document.querySelector('#' + type + 'Img' + obj.id)
-    
     if (files && files.files.length !== 0) {
         form.append('picture', files.files[0])
     }
     
-
-
     if(type === 'projects'){
         relType = 'technology_ids[]'
     }else{
         relType = 'project_ids[]'
     }
 
-
     if (chkboxs) {
         chkboxs.forEach(cb => {
-            console.log('cbvalue', cb.value)
             if (cb.checked) {
-                console.log(cb.value)
+                // console.log(cb.value)
                 form.append(relType, cb.value)
             }
 
         })
     }
-
-
-  
-  
-
-
 
     let update = await fetch(BASE_URL + '/' + type + '/' + obj.id, {
         method: 'put',
@@ -186,38 +172,18 @@ export const updateProject = async (event, obj, type, relType) => {
             // console.log(ans)
             return ans
         })
-        // .then(ans => {
-        //     // console.log(ans)
-        //     return ans
-        // })
         .then(async data => {
-            // console.log(data)
-            // if (obj[type] === 'project') {
-            //     type = 'projects'
-            // }
-            // if (obj[type] === 'technology') {
-            //     type = 'technologies'
-            // }
-            // if (obj[type] === 'trait') {
-
-            //     type = 'traits'
-
-            // }
+       
             let res = await getResults(type)
             // console.log(Object.keys(res)[0], res)
             mapData( res)
             return data
-
         })
-   
-
-
-
 }
 
 
 export const getOneProject = async (evt, obj, type) => {
-    console.log(evt)
+    // console.log(evt)
     evt.preventDefault()
     console.log('getOneProj-->type', type)
     let resDiv = document.querySelector('.' + type)
@@ -238,25 +204,27 @@ export const getOneProject = async (evt, obj, type) => {
             return red
         })
     // console.log('shoonga')
-    if (type === 'projects') {
-        type = 'project'
-    } type
-    if (type === 'technologies') {
-        type = 'technology'
-    }
-    if (type === 'traits') {
+    // if (type === 'projects') {
+    //     type = 'project'
+    // } type
+    // if (type === 'technologies') {
+    //     type = 'technology'
+    // }
+    // if (type === 'traits') {
 
-        type = 'trait'
+    //     type = 'trait'
 
-    }
+    // }
+    type = singularize(type)
 
     // console.log('type', type, getProject)
 
     let allData = getProject
+    allData[type] = [allData[type]]
     let data = { [type]: [allData[type]] }
     let relData = { [Object.keys(allData)[1]]: allData[Object.keys(allData)[1]] }
-    //    console.log('allData', allData, 'data', data, 'reldata', relData)
-    mapData(data)
+       console.log('allData', allData, 'data', data, 'reldata', relData)
+    mapData(allData)
     mapRelPrjs(relData)
 
 }
@@ -264,7 +232,7 @@ export const getOneProject = async (evt, obj, type) => {
 
 let mapRelPrjs = async (data) => {
 
-    console.log('mapRelProj---> data', data)
+    // console.log('mapRelProj---> data', data)
     let field
     let type = Object.keys(data)[0]
     let allItems = await getResults(type)
@@ -294,7 +262,7 @@ let mapRelPrjs = async (data) => {
         let text = document.createTextNode(obj[field])
         document.querySelector('.current form').append(text)
         chkBox.addEventListener('click', (e) => {
-            console.log('clicked', e.target.value)
+            // console.log('clicked', e.target.value)
 
         })
 
@@ -313,7 +281,7 @@ let mapRelPrjs = async (data) => {
 export const showSingleItemm = async (event, obj, type) => {
     // event.preventDefault()
     console.log('inside function', obj.id)
-    Object.keys(data)[0]
+    Object.keys(obj)[0]
     const result = await fetch(`${BASE_URL}/${type}/${obj.id}`)
         .then(function (res) {
             // console.log(res.json)

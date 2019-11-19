@@ -31,6 +31,7 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
+    "isotope-layout": "^3.0.6",
     "surge": "^0.21.3"
   }
 }

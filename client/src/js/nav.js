@@ -7,28 +7,37 @@ import { aboutAside } from './aboutAside'
 import { resumeAside } from './resumeAside'
 
 
-export function navbar(data) {
+export function navbar(data, type) {
   // { resume: 'vaadin:diploma-scroll' }
+  console.log(data)
   const array = [{ projects: 'ion:newspaper-outline' }, { resume: 'noto:scroll' }, { about: 'noto:information' }]
  
-  let render = (type = "projects") => {
+  let render = (type = "projects", data = null) => {
+    console.log('data', data)
     // document.querySelector('.main-content').innerHTML = " "
     let mainDiv = document.querySelector('.main-content')
     mainDiv.innerHTML = ''
-
+  
     let nav = makeElement('div', 'nav', mainDiv, {})
-    nav.style.position = "relative"
+    // nav.style.position = "relative"
     console.log('nav', nav)
+    // name = type === 'technology'
+      console.log(data && Object.keys(data))
+      let title = data && Object.keys(data)[0] === 'project' ? 'title': 'name'
+      console.log(title)
+    let ext =  data && data[Object.keys(data)[0]][title]
    
     array.forEach((opt, i) => {
       let div = makeElement('div', 'option', nav, {})
       let icon = makeElement('span', 'iconify', div)
       icon.setAttribute("data-icon", Object.values(array[i]))
       icon.setAttribute("data-inline", false)
-    
       if (type === Object.keys(array[i])[0]) {
-        let text = document.createTextNode(' ' + Object.keys(array[i]))
+        let text = makeElement('div', 'text', div, {innerText:Object.keys(array[i])})
         div.appendChild(text)
+        let moreText = data ? makeElement('div', 'more-text', div,{innerText:' - ' + ext}): document.createTextNode(' ')
+        
+        div.appendChild(moreText)
         div.style.color = "red"
         div.style.fontSize = '1em'
         div.style.position = "absolute"
@@ -58,6 +67,6 @@ export function navbar(data) {
       })
     })
   }
-  render()
+  render('projects', data)
 
 }

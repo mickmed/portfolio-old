@@ -98,7 +98,7 @@ a {
 
 .container{
   width: 95%;
-  height: 99%;
+  height: 90%;
   display:flex;
   font-size: calc(.5em + 1vw);
   color: #262626;
@@ -158,15 +158,16 @@ a {
 .container .main-content {
   /* min-width:100%; */
   overflow-y: scroll !important;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch;  */
   /* position: relative; */
   height:100%;
   margin: 0 0;
   /* width:100%; */
   width:95%;
+  position:relative;
 }
 .container .main-content::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 
@@ -189,9 +190,13 @@ a {
 }
 .main-content .option{
   margin:2%;
+  display:flex;
+  justify-content:space-between;
   
 }
 .main-content .nav{
+  position:relative;
+  /* z-index:5; */
   display:flex;
   min-width:100%;
   justify-content:flex-end;
@@ -199,6 +204,21 @@ a {
   font-size:1.2em;
   padding: 0;
 }
+.option .text{
+  transform:translate(10%);
+  
+}
+.option .more-text{
+  
+  transform:translate(1em);
+  font-style:italic;
+
+  
+
+
+}
+
+
 .sidebar .email {
   text-align:center;
   font-family:'Overpass';
@@ -207,6 +227,14 @@ a {
   font-size: 3em;
   display:none;
 }
+
+.down-arrow{
+
+}
+
+
+
+
 /*//ABOUT//////////////////////*/
 /*  */
 .about{
@@ -247,7 +275,9 @@ a {
   flex-direction: column;
   justify-content:center; 
 }
-
+.btn-wrapper a{
+  text-align:center;
+}
 .about-btn{
   margin:10% auto;
   background-image:linear-gradient(to bottom right, rgb(255, 214, 131), rgb(252, 252, 216));
@@ -384,11 +414,26 @@ a {
 .resume{
 
   width:100%;
+  height:100%;
   margin:0 auto;
+
 }
 .res-img-wrapper{
  
-  margin:3% 10% 0 5%;
+  margin:5% 10% 0 5%;
+  height:100%;
+  text-align:center;
+}
+
+object{
+  font-family: 'overpass';
+
+}
+
+.res-img-wrapper div{
+  margin-top: .5em;
+  font-size:4em;
+  color: rgb(142, 197, 106);
 }
 
 
@@ -428,6 +473,7 @@ a {
 /* //MODAL//// */
 
 .modal{
+  
   position:absolute;
   top:0;
   left:0;
@@ -448,7 +494,8 @@ a {
   opacity:0;
  
   animation: project-opacity 1s linear forwards;
- 
+ display:flex;
+ justify-content: space-between;
  
   z-index: 2;
   overflow: hidden;
@@ -458,7 +505,7 @@ a {
 .modal:after {
   content: " ";
   position: absolute;
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   left: 0;
@@ -480,6 +527,12 @@ a {
   font-size:1em;
   padding-top:3%;
   
+}
+.modal h3{
+ color:red;
+ font-style: italic;
+ visibility:hidden;
+
 }
 .modal p{
   
@@ -573,9 +626,7 @@ a {
   .fas.fa-caret-down{
     display:none;
   }
-  nav{
-    /* display:flex; */
-  }
+
   .sidebar .email a{
     font-size:.75em;
     display:inline;

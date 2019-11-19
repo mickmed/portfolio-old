@@ -34,7 +34,7 @@ export let makeCurrentDiv = (type) => {
 
 export let mapData = (data, event) => {
     // event && event.preventDefault()
-    // console.log('mapdata --> data', data)
+    console.log('mapdata --> data', data)
     let type = Object.keys(data)[0]
     let relType = Object.keys(data)[1]
     // console.log(relType)
@@ -129,7 +129,7 @@ export const makeFormBtns = (type, obj, parent, relType) => {
 }
 
 export const newItemBtns = (type, relType, obj, parent) => {
-    console.log('makeNewItemBtns ---> type', type, relType)
+    // console.log('makeNewItemBtns ---> type', type, relType)
     let buttons = makeElement('div', 'buttons', parent)
     let addNewBtn = makeElement('button', 'getOneBtn', buttons, { innerText: 'add new' })
     // let checkboxes = checkboxes(type)
@@ -143,7 +143,7 @@ export const newItemBtns = (type, relType, obj, parent) => {
 
 
 export const checkboxes = async (type) => {
-    console.log('checkboxes ---> type', type)
+    // console.log('checkboxes ---> type', type)
  
     let name = type === ('technologies' || type === 'traits') ? 'name' : 'title'
     let res = await getResults(type)
