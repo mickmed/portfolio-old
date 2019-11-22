@@ -13,22 +13,23 @@ export function navbar(data, type) {
   const array = [{ projects: 'ion:newspaper-outline' }, { resume: 'noto:scroll' }, { about: 'noto:information' }]
  
   let render = (type = "projects", data = null) => {
-    console.log('data', data)
+    // console.log('data', data)
     // document.querySelector('.main-content').innerHTML = " "
     let mainDiv = document.querySelector('.main-content')
     mainDiv.innerHTML = ''
   
     let nav = makeElement('div', 'nav', mainDiv, {})
     // nav.style.position = "relative"
-    console.log('nav', nav)
+    // console.log('nav', nav)
     // name = type === 'technology'
-      console.log(data && Object.keys(data))
-      let title = data && Object.keys(data)[0] === 'project' ? 'title': 'name'
-      console.log(title)
+      // console.log(data && Object.keys(data))
+    let title = data && Object.keys(data)[0] === 'project' ? 'title': 'name'
+      // console.log(title)
     let ext =  data && data[Object.keys(data)[0]][title]
    
     array.forEach((opt, i) => {
       let div = makeElement('div', 'option', nav, {})
+      div.style.cursor = 'pointer'
       let icon = makeElement('span', 'iconify', div)
       icon.setAttribute("data-icon", Object.values(array[i]))
       icon.setAttribute("data-inline", false)

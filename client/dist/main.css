@@ -378,7 +378,7 @@ a {
 }
 
 .project:hover:before{
-  animation: animate-project 1s linear forwards;
+  /* animation: animate-project 1s linear forwards; */
 }
 
 
@@ -473,7 +473,7 @@ object{
 /* //MODAL//// */
 
 .modal{
-  display:flex;
+  
   position:absolute;
   top:0;
   left:0;
@@ -494,7 +494,8 @@ object{
   opacity:0;
  
   animation: project-opacity 1s linear forwards;
- 
+ display:flex;
+ justify-content: space-between;
  
   z-index: 2;
   overflow: hidden;
@@ -518,7 +519,7 @@ object{
 }
 
 .modal:hover {
-  animation: project-opacity2 1s linear forwards;
+  /* animation: project-opacity2 1s linear forwards; */
 }
 
 .modal h2{
@@ -526,6 +527,12 @@ object{
   font-size:1em;
   padding-top:3%;
   
+}
+.modal h3{
+ color:red;
+ font-style: italic;
+ visibility:hidden;
+
 }
 .modal p{
   
@@ -710,6 +717,7 @@ object{
     padding:2%;
     background: lightsteelblue;
     border-radius: 5px;
+    position:absolute;
 
 }
 

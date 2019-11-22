@@ -5,12 +5,13 @@ import { showSingleItemm } from './api_helper'
 import { technologies } from './technologies';
 import { navbar } from './nav';
 const pathToImg = require.context('../img/', true);
-// console.log(pathToImg)
+console.log(pathToImg)
 
 export let projects = async (type, data = []) => {
-
-  let res = data.length === 0 ? await getResults(type) : data
-  // console.log(res)
+  console.log('datalenght', data.length)
+  console.log('data', data)
+  let res = data.length === 0 || data.length === 'undefined' ? await getResults(type) : data
+  console.log('res', res)
   if (Object.keys(res)[0] === 'project') {
     res.project = [res.project]
     // console.log('rest', res)
@@ -19,12 +20,12 @@ export let projects = async (type, data = []) => {
     type = 'projects'
   }
   let mainContent = document.querySelector('.main-content')
-  console.log('maincont', mainContent)
+  // console.log('maincont', mainContent)
   // mainContent.innerHTML = ""
   
   let projectsDiv = makeElement('div', 'projects', mainContent, { id: 'projects' })
   // projectsDiv.innerHTML = ""
-   console.log('projecgt data', res)
+  //  console.log('projecgt data', res)
   res[type].forEach((e, i) => {
     // console.log('src/'+ e.local_url)
     let projWrapper = makeElement('div', "proj-wrapper", projectsDiv, {})
@@ -38,18 +39,14 @@ export let projects = async (type, data = []) => {
     }
 
     let project = makeElement('div', 'project', projWrapper)
-    project.classList.add('project' + e.id)
+    project.classList.add('project' + e.id, 'projectCard')
     project.addEventListener('click', async function (evt) {
       let res = await showSingleItemm(evt, e, 'projects')
-      // console.log('res event', res)
-      let project = {project:e}
-      // console.log('project', project)
-      let technologiesData = {'technologies':res.technologies}  
-      // console.log('tech', technologies)
+      
       document.querySelector('.main-content').innerHTML = ''
       navbar({project:e})
-      projects('project', project)
-      technologies('technologies', technologiesData)
+      projects('project', {'project':e, 'technologies':res.technologies, 'traits':res.traits})
+      technologies('technologies', {'technologies':res.technologies})
     })    // let anchor = makeElement('a', 'proj-link', project, { href: e.site_url, target: "_blank" })
 
     let imgWrapper = makeElement('div', 'img-wrapper', project)
@@ -58,8 +55,14 @@ export let projects = async (type, data = []) => {
     let modal = makeElement('div', 'modal', imgWrapper, {})
     modal.classList.add('project-' + e.id + '-modal')
     let h2 = makeElement('h2', 'project-title', modal, { innerText: e.title })
-    let traitsDiv = makeElement('div', 'traits-div', modal)
-    let h3 = makeElement('h3', 'trait', traitsDiv, {innerText:e.title})
+    let h3
+    console.log('res.traits', res.traits)
+    res.traits &&
+    res.traits.forEach((trait) => {
+      let traitsDiv = makeElement('div', 'traits-div', modal)
+      h3 = makeElement('h3', 'trait', traitsDiv, {innerText:trait.name})
+    })
+    
 
 
     if (type === 'project' && window.matchMedia("(min-width: 600px)").matches) {
@@ -68,7 +71,7 @@ export let projects = async (type, data = []) => {
 
     }
    
-    console.log('modal', modal)
+    // console.log('modal', modal)
     
   })
 }

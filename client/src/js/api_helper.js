@@ -3,6 +3,7 @@ import { makeElement } from './dom_helper'
 
 let BASE_URL = 'http://localhost:3000'
 // let BASE_URL = 'https://portfolio-mick.appspot.com'
+// let BASE_URL = 'https://portfolio-server-mick.herokuapp.com'
 
 export let getResultss = async (type) => {
 
@@ -280,7 +281,7 @@ let mapRelPrjs = async (data) => {
 
 export const showSingleItemm = async (event, obj, type) => {
     // event.preventDefault()
-    console.log('inside function', obj.id)
+    // console.log('inside function', obj.id)
     Object.keys(obj)[0]
     const result = await fetch(`${BASE_URL}/${type}/${obj.id}`)
         .then(function (res) {

@@ -33,13 +33,9 @@ export let makeCurrentDiv = (type) => {
 
 
 export let mapData = (data, event) => {
-    // event && event.preventDefault()
     console.log('mapdata --> data', data)
     let type = Object.keys(data)[0]
     let relType = Object.keys(data)[1]
-    // console.log(relType)
-    // console.log('mapData-->type', type)
-    // console.log(Object.keys(data[Object.keys(data)[0]][0]))
     let currentDiv = makeCurrentDiv(type)
     let makeNewBtn = makeElement('button', 'makeNew', currentDiv, { innerText: "Make New" })
     makeNewBtn.addEventListener('click', (event) => {
@@ -91,7 +87,7 @@ export let makeForm = (obj, newItem = '') => {
 }
 
 export const makeFormBtns = (type, obj, parent, relType) => {
-    // console.log(obj)
+    console.log(type, obj, parent, relType)
     // console.log('makeFromBtns ---> type', type)
     let buttons = makeElement('div', 'buttons', parent)
 
