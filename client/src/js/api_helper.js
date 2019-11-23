@@ -1,9 +1,9 @@
 import { mapData } from './dom_helper'
 import { makeElement } from './dom_helper'
 
-let BASE_URL = 'http://localhost:3000'
+// let BASE_URL = 'http://localhost:3000'
 // let BASE_URL = 'https://portfolio-mick.appspot.com'
-// let BASE_URL = 'https://portfolio-server-mick.herokuapp.com'
+let BASE_URL = 'https://portfolio-server-mick.herokuapp.com'
 
 export let getResultss = async (type) => {
 
