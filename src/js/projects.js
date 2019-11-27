@@ -71,8 +71,6 @@ export let projects = async (type, data = []) => {
 
     let linkModalSiteBtn = makeElement('button', 'site-button', linkModal, { innerText: 'visit site'})
     linkModalSiteBtn.addEventListener('click', (evt)=> {
-      // evt.stopPropagation()
-      console.log('hid')
       location.href = e.site_url
       target = "_blank"
      
@@ -95,10 +93,14 @@ export let projects = async (type, data = []) => {
   
 
     if (type === 'project' && window.matchMedia("(min-width: 600px)").matches) {
+      linkModalMore.style.display = "none"
       modal.style.backgroundImage = 'linear-gradient(to right, rgba(255,255,255, 1),rgba(255, 255, 255, 1) )'
       let traitNames = (document.querySelectorAll('h3'))
       traitNames.forEach(name => name.style.visibility = "visible")
       // modal:after.style.backgroundImage = 'linear-gradient(to right, rgba(150,150,150, 0.99),rgba(255, 255, 255, 1) )'
+      let sidebar =  document.querySelector('.sidebar')
+      console.log('sidebar', sidebar)
+      sidebar.style.display = "none"
     }
 
     // console.log('modal', modal)

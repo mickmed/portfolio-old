@@ -1,8 +1,9 @@
 
 import { makeElement } from './dom_helper.js'
 export let person = () => {
-
     let sidebar = document.querySelector('.sidebar')
+    console.log(sidebar.children)
+
     // let sidebar = makeElement('aside', 'sidebar', container, {})
     let headerImg = makeElement('div', 'header-img', sidebar, {})
     let img = makeElement('img', 'img', headerImg, { src: '../src/img/sm_IMG_8809.jpg', alt:'mickpic' })
