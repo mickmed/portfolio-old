@@ -8,7 +8,7 @@ import { resumeAside } from './resumeAside'
 
 
 export let sidebar = (type, data = []) => {
-  console.log(type, data)
+  // console.log(type, data)
   
   // !document.querySelector('.header-img') && person() 
   // !document.querySelector('.nav') && navBar() 

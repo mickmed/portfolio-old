@@ -2,7 +2,10 @@
 import { makeElement } from './dom_helper.js'
 export let person = () => {
     let sidebar = document.querySelector('.sidebar')
-    console.log(sidebar.children)
+    // console.log(sidebar.children)
+    // sidebar.children[0] && sidebar.children[0].remove() && sidebar.children[1].remove()
+    sidebar.innerHTML = ''
+
 
     // let sidebar = makeElement('aside', 'sidebar', container, {})
     let headerImg = makeElement('div', 'header-img', sidebar, {})

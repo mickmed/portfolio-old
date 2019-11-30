@@ -33,7 +33,7 @@ export let makeCurrentDiv = (type) => {
 
 
 export let mapData = (data, event) => {
-    console.log('mapdata --> data', data)
+    // console.log('mapdata --> data', data)
     let type = Object.keys(data)[0]
     let relType = Object.keys(data)[1]
     let currentDiv = makeCurrentDiv(type)
@@ -87,7 +87,7 @@ export let makeForm = (obj, newItem = '') => {
 }
 
 export const makeFormBtns = (type, obj, parent, relType) => {
-    console.log(type, obj, parent, relType)
+    // console.log(type, obj, parent, relType)
     // console.log('makeFromBtns ---> type', type)
     let buttons = makeElement('div', 'buttons', parent)
 

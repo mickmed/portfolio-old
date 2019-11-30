@@ -9,9 +9,13 @@ import { resumeAside } from './resumeAside'
 
 export function navbar(data, type) {
   // { resume: 'vaadin:diploma-scroll' }
-  console.log(data)
+  // console.log(data)
   const array = [{ projects: 'ion:newspaper-outline' }, { resume: 'noto:scroll' }, { about: 'noto:information' }]
- 
+  document.querySelector('.sidebar').style.display === "none" 
+  && (document.querySelector('.sidebar').style.display = "inline")
+  // && console.log('hjisdf')
+
+  
   let render = (type = "projects", data = null) => {
     // console.log('data', data)
     // document.querySelector('.main-content').innerHTML = " "

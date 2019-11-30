@@ -4,13 +4,13 @@ import { mapData } from './dom_helper'
 
 
 let controls = document.querySelector('.controls')
-console.log(controls)
+// console.log(controls)
 
 let btnNames = ['projects', 'technologies', 'traits']
 btnNames.forEach(name=>{
     makeElement('button', 'getPrjs', controls, { innerText: name }).addEventListener('click', (async (event) => {
         let res = await getResults(name)
-        console.log(res)
+        // console.log(res)
         mapData(res)
     }))
 })

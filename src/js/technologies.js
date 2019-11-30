@@ -30,8 +30,8 @@ export let technologies = async (type, data = []) => {
     // console.log(selected)
     res.technologies.unshift(selected[0])
 
-
-    sidebar.childNodes[3] && sidebar.removeChild(sidebar.childNodes[3])
+console.log('sidebar', sidebar.children)
+    sidebar.children[2] && sidebar.removeChild(sidebar.children[2])
 
     let techList = makeElement('div', 'tech-list', sidebar, {})
     // console.log('chils', sidebar.children[2])

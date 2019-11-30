@@ -4,6 +4,10 @@ import { makeElement } from './dom_helper'
 
 export let resume = (type='.JPG') => {
     console.log(type)
+    document.querySelector('.sidebar').style.display === "none" 
+    &&  (document.querySelector('.sidebar').style.display = "inline") 
+    
+    && console.log('tesi')
 
     let mainContent = document.querySelector('.main-content')
 

@@ -39,7 +39,7 @@ export let getResults = async (type) => {
 
 export const makeNewItem = async (event, type, obj, relType) => {
     event.preventDefault() 
-    console.log('type,relType', type, relType)
+    // console.log('type,relType', type, relType)
     let fields = Object.keys(obj)
     let form = new FormData();
 
@@ -47,9 +47,9 @@ export const makeNewItem = async (event, type, obj, relType) => {
         fields[i] !== 'id' && fields[i] !== 'created_at' && fields[i] !== 'updated_at' &&
         form.append(fields[i], document.querySelector('.'+fields[i]).value)
     }
-   console.log(form)
+//    console.log(form)
     let chkboxs = document.querySelectorAll('.chkbox')
-    console.log(chkboxs)
+    // console.log(chkboxs)
     let files = document.querySelector('#' + type + 'Img' + obj.id)
     
     if (files && files.files.length !== 0) {
@@ -65,7 +65,7 @@ export const makeNewItem = async (event, type, obj, relType) => {
         chkboxs.forEach(cb => {
             // console.log(cb.value)
             if (cb.checked) {
-                console.log(cb.value)
+                // console.log(cb.value)
                 form.append(relType, cb.value)
             }
 
@@ -186,7 +186,7 @@ export const updateProject = async (event, obj, type, relType) => {
 export const getOneProject = async (evt, obj, type) => {
     // console.log(evt)
     evt.preventDefault()
-    console.log('getOneProj-->type', type)
+    // console.log('getOneProj-->type', type)
     let resDiv = document.querySelector('.' + type)
 
     resDiv.style.display = "none"
@@ -224,7 +224,7 @@ export const getOneProject = async (evt, obj, type) => {
     allData[type] = [allData[type]]
     let data = { [type]: [allData[type]] }
     let relData = { [Object.keys(allData)[1]]: allData[Object.keys(allData)[1]] }
-       console.log('allData', allData, 'data', data, 'reldata', relData)
+    //    console.log('allData', allData, 'data', data, 'reldata', relData)
     mapData(allData)
     mapRelPrjs(relData)
 

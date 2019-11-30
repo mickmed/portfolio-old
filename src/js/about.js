@@ -9,6 +9,10 @@ let text2 = 'This site was built with Vanilla Javascript and comprizes of a Rail
 
 export let about = () => {
     let mainContent = document.querySelector('.main-content')
+    document.querySelector('.sidebar').style.display === "none" 
+    &&  (document.querySelector('.sidebar').style.display = "inline")
+
+
     // mainContent.removeChild(mainContent.childNodes[2])
     // mainContent.innerText = ''
     let about = makeElement('div', 'about', mainContent, {id:'about'})

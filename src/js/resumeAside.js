@@ -10,7 +10,7 @@ import { resume } from './resume'
 export let resumeAside = () => {
     let sidebar = document.querySelector('.sidebar')
     console.log(sidebar)
-    sidebar.removeChild(sidebar.childNodes[3])
+    sidebar.removeChild(sidebar.children[2])
     // console.log(sidebar.childNodes)
 
     let buttons = ['.JPG', '.PDF', '.DOC']

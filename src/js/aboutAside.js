@@ -7,10 +7,9 @@ import { makeElement } from './dom_helper.js'
 
 export let aboutAside = () => {
     let sidebar = document.querySelector('.sidebar')
-    console.log(sidebar)
-    sidebar.removeChild(sidebar.childNodes[3])
-    console.log(sidebar.childNodes)
-    // mainContent.innerText = ''
+    // console.log(sidebar.children)
+    sidebar.removeChild(sidebar.children[2])
+   
     let div = makeElement('div', 'btn-wrapper', sidebar, {})
 
     // let aboutBtn = makeElement('button', 'about-btn', div, {innerText:'Download', id:'about-btn'})
