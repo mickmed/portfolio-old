@@ -13,7 +13,7 @@ export let resumeAside = () => {
     sidebar.removeChild(sidebar.children[2])
     // console.log(sidebar.childNodes)
 
-    let buttons = ['.JPG', '.PDF', '.DOC']
+    let buttons = ['GoogleDoc', '.JPG', '.PDF', '.DOC']
     let div = makeElement('div', 'btn-wrapper', sidebar, {})
 
 

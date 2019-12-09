@@ -2,7 +2,7 @@
 import { makeElement } from './dom_helper'
 
 
-export let resume = (type='.JPG') => {
+export let resume = (type='GoogleDoc') => {
     console.log(type)
     window.matchMedia("(min-width: 600px)").matches &&
     document.querySelector('.sidebar').style.display === "none" 
@@ -28,11 +28,20 @@ export let resume = (type='.JPG') => {
     let imgWrapper = makeElement('div', 'res-img-wrapper', resumeDiv)
 
 
+    if (type === 'GoogleDoc') {
+        
+        // let anchor = makeElement('a', 'googledoc-link', imgWrapper,{innerText:'link to doc', href:"https://docs.google.com/document/d/e/2PACX-1vTKhTvfNHi3gGnJsJx_B05vuaahwEOi7tspQCAKgLYfP8pOgdfZd1bFWleRN67TOA7_eoq1ieFDfcs4/pub", target:"_blank"})
+
+         let gDoc = makeElement('iframe', 'iframe', imgWrapper, {src:"https://docs.google.com/document/d/e/2PACX-1vTKhTvfNHi3gGnJsJx_B05vuaahwEOi7tspQCAKgLYfP8pOgdfZd1bFWleRN67TOA7_eoq1ieFDfcs4/pub?embedded=true"} )
+         gDoc.style.width="100%"
+         gDoc.style.height="100%"
+
+         
+    }
     if (type === '.JPG') {
 
-         let img = type === '.JPG' && makeElement('img', 'resume', imgWrapper, { src: './src/img/resume.png' })
+        let img = type === '.JPG' && makeElement('img', 'resume', imgWrapper, { src: './src/img/resume.png' })
     }
-
 
     if (type === '.PDF') {
 
