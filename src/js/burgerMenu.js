@@ -18,7 +18,10 @@ export const burgerMenu = () => {
     projects("projects");
     technologies("technologies");
     mainDiv.style.display = "none";
+ 
   });
+  itemProjects.style.cursor="pointer"
+
 
   const itemResume = makeElement("h4", "burger-item", mainDiv, {
     innerText: "resume"
@@ -30,6 +33,8 @@ export const burgerMenu = () => {
 
     mainDiv.style.display = "none";
   });
+  itemResume.style.cursor="pointer"
+
 
   const itemAbout = makeElement("h4", "burger-item", mainDiv, {
     innerText: "about"
@@ -41,6 +46,7 @@ export const burgerMenu = () => {
 
     mainDiv.style.display = "none";
   });
+  itemAbout.style.cursor="pointer"
 
   let itemLinkedIn = makeElement("h4", "burger-item", mainDiv, {
     innerText: "Linked In"
@@ -49,15 +55,20 @@ export const burgerMenu = () => {
     location.href = "https://www.linkedin.com/in/mick-roth/";
     target = "_blank";
   });
+  itemLinkedIn.style.cursor="pointer"
+
 
   let itemGithub = makeElement("h4", "burger-item", mainDiv, {
     innerText: "Github"
   });
-  itemLinkedIn.addEventListener("click", evt => {
+  itemGithub.addEventListener("click", evt => {
     location.href = "https://github.com/mickmed";
     target = "_blank";
   });
-};
-mainDiv.children.forEach(child=>{
+  itemGithub.style.cursor="pointer"
+
+  mainDiv.children.forEach(child=>{
+    console.log('child', child)
     child.style.cursor="pointer"
 })
+};
