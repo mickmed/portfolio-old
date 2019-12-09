@@ -54,6 +54,7 @@ body {
 
 .header a {
   margin: 1.2% 2% 0 0;
+  display:none;
 }
 
 .title {
@@ -161,7 +162,27 @@ a {
 .filler {
   width: 100%;
   background: transparent;
+
   box-shadow: 0 0 80px rgba(255, 255, 255, 0.8);
+}
+.burger-div{
+  display:flex;
+  align-items:center;
+
+}
+.burgerMenu-mainDiv{
+  /* height:200px; */
+  width:90%;
+  background:lightgrey;
+  /* margin:0 0 0 5%; */
+  padding:0 5%;
+  position:absolute;
+  z-index: 10;
+  display:none;
+  color:red;
+  font-size:2em;
+  font-family:'Overpass';
+  border-radius:0 30px 0 0;
 }
 .container .main-content {
   /* min-width:100%; */
@@ -658,6 +679,9 @@ object {
 
 
 @media only screen and (min-width: 600px) {
+  .header a{
+    display:inline;
+  }
   .header-img {
     width: 50%;
   }
@@ -670,6 +694,9 @@ object {
   }
   .fas.fa-caret-down {
     display: none;
+  }
+  .burger-div{
+    display:none;
   }
   .sidebar{
     display:inline;
@@ -753,14 +780,17 @@ object {
   .project {
     margin-bottom: 5%;
   }
-  .project-title{
-    font-size:2em;
+  h2.project-title{
+    font-size:1.9em !important;
   }
   .trait{
     font-size:1.5em;
   }
   .techs {
     font-size: 24px;
+  }
+  .site-button, .more-anchor{
+    transform:scale(1.5, 1.5);
   }
 }
 

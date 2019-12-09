@@ -7,7 +7,7 @@ import { aboutAside } from './aboutAside'
 import { resumeAside } from './resumeAside'
 
 
-export function navbar(data, type) {
+export function navbar(data, type="projects") {
   // { resume: 'vaadin:diploma-scroll' }
   // console.log(data)
   const array = [{ projects: 'ion:newspaper-outline' }, { resume: 'noto:scroll' }, { about: 'noto:information' }]
@@ -16,7 +16,7 @@ export function navbar(data, type) {
   // && console.log('hjisdf')
 
   
-  let render = (type = "projects", data = null) => {
+  let render = (type, data = null) => {
     // console.log('data', data)
     // document.querySelector('.main-content').innerHTML = " "
     let mainDiv = document.querySelector('.main-content')
@@ -72,6 +72,6 @@ export function navbar(data, type) {
       })
     })
   }
-  render('projects', data)
+  render(type, data)
 
 }

@@ -6,8 +6,7 @@ export let resume = (type='.JPG') => {
     console.log(type)
     document.querySelector('.sidebar').style.display === "none" 
     &&  (document.querySelector('.sidebar').style.display = "inline") 
-    
-    && console.log('tesi')
+   
 
     let mainContent = document.querySelector('.main-content')
 
@@ -16,12 +15,15 @@ export let resume = (type='.JPG') => {
         resumeDiv = document.querySelector('.resume')
         resumeDiv.innerHTML = ''
     } else {
+        console.log(mainContent.children)
+        mainContent.children[1] && mainContent.removeChild(mainContent.children[1])
+
         resumeDiv = makeElement('div', 'resume', mainContent, { id: 'resume' })
 
     }
 
     console.log(resumeDiv)
-    // mainContent.removeChild(mainContent.childNodes[2])
+    
     let imgWrapper = makeElement('div', 'res-img-wrapper', resumeDiv)
 
 
