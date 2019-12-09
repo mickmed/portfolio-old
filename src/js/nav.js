@@ -11,8 +11,8 @@ export function navbar(data, type="projects") {
   // { resume: 'vaadin:diploma-scroll' }
   // console.log(data)
   const array = [{ projects: 'ion:newspaper-outline' }, { resume: 'noto:scroll' }, { about: 'noto:information' }]
-  document.querySelector('.sidebar').style.display === "none" 
-  && (document.querySelector('.sidebar').style.display = "inline")
+  // document.querySelector('.sidebar').style.display === "none" 
+  // && (document.querySelector('.sidebar').style.display = "inline")
   // && console.log('hjisdf')
 
   

@@ -10,6 +10,7 @@ const pathToImg = require.context("../img/", true);
 export let projects = async (type, data = []) => {
   
   // console.log("datalenght", data.length);
+  matchMedia("(min-width: 600px)").matches &&
   document.querySelector(".sidebar").style.display === "none" &&
     (document.querySelector(".sidebar").style.display = "inline") &&
     console.log('type/data', type, data);
