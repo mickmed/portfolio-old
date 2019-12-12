@@ -1,5 +1,8 @@
 // import axios from './axios.js'
 
+import {a} from './uploader.js';
+console.log('hi there', a)
+
 document.onLoad = getProjects()
 
 function getProjects(){
