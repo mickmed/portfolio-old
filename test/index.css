@@ -1,0 +1,19 @@
+body{
+    width:100vw;
+    height:100vh;
+    margin:0;
+    overflow:hidden;
+}
+
+.curved{
+    background:#ff3c00;
+    color:#fff;
+    text-align:center;
+}
+.curved h1{
+    font-size:6rem;
+    
+}
+.curved p{
+    font-size:1rem;
+}

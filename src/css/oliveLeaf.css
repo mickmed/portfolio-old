@@ -1,0 +1,51 @@
+
+/* #olive:hover{
+    background:red;
+  animation: fills 4s 3s forwards;
+
+} */
+
+
+#olive defs linearGradient stop:nth-child(1){
+    offset:0%;
+    stop-color:red;
+    stop-opacity:1
+    
+}
+
+#olive defs linearGradient stop:nth-child(2){
+    offset:100%;
+    stop-color:yellow;
+    stop-opacity:.7;
+    
+}
+
+
+
+#olive g {
+  fill-opacity: 0;
+  /* animation: fills 4s 3s forwards; */
+  stroke: green;
+  stroke-width: 2;
+  /* fill: green; */
+}
+/* #olive g:hover{
+    background:red;
+  animation: fills 4s 0s forwards;
+
+} */
+#olive g path {
+  stroke-dashoffset: 5000;
+  stroke-dasharray: 5000;
+  animation: borders 2s 1s forwards;
+}
+@keyframes borders {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fills {
+  to {
+    fill-opacity: 0.99;
+  }
+}

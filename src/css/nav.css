@@ -1,0 +1,21 @@
+.nav {
+  position: absolute;
+  left: 5%;
+  top: 30%;
+  /* z-index:5; */
+  display: flex;
+  flex-direction: column;
+ 
+  font-family: overpass;
+
+}
+
+.text {
+  font-size: 0.5em;
+}
+
+.option {
+  cursor: pointer;
+  color:blue;
+  width:10%;
+}

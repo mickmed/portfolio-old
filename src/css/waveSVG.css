@@ -1,0 +1,19 @@
+object {
+    width: 100%;
+  }
+  
+  /* #wave-svg g {
+    stroke: red;
+    fill: #0099ff;
+    fill: orange;
+  
+    stroke-width: 2;
+    fill-opacity: 0;
+    animation: fills 4s 3s forwards;
+  } */
+  
+  #wave-svg g path {
+    stroke-dashoffset: 2600;
+    stroke-dasharray: 2600;
+    animation: borders 12s 5s infinite;
+  }

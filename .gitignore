@@ -1,0 +1,8 @@
+app.yaml
+server/config/database.yml
+server/config/storage.yml
+
+server/config/secrets/
+server/config/credentials.yml.enc
+node_modules
+
