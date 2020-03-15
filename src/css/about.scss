@@ -1,0 +1,64 @@
+.about {
+  width: 100%;
+  background-position: center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: overpass;
+  padding: 0 5%;
+  overflow-y: scroll;
+  height: 100vh;
+  
+  .para-wrap {
+    padding-top: 5%;
+    display: flex;
+    font-size: 0.7em;
+    
+    .para {
+      background-image: linear-gradient(transparent 10%, rgb(11, 105, 11) 20%, rgb(11, 105, 11) 80%, transparent 90%);
+      -webkit-background-clip: text;
+      background-attachment: fixed;
+      overflow-y: scroll;
+      padding-top: 9%;
+      line-height:1.8em;
+      letter-spacing:.1em;
+     
+      // color:rgb(16, 77, 16);
+    }
+    .para > * {
+      color: transparent;
+    }
+    .leaf-pic{
+      width:30%;
+    }
+  }
+  
+  .img-wrapper {
+    margin-top: 10%;
+    // transform:translateX(25%);
+    display: flex;
+    justify-content: flex-end;
+    .hunmil {
+      text-align: left;
+      margin: 4% auto;
+      width: 70%;
+      /* display: block; */
+    }
+  }
+}
+
+.about-para::-webkit-scrollbar {
+  display: none;
+}
+
+.para-wrap:hover > .leaf-pic #olive {
+  background: red;
+}
+
+
+@media only screen and (min-width: 900px) {
+  .para-wrap{
+    width:80%;
+  }
+
+}

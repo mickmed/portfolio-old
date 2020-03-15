@@ -1,0 +1,44 @@
+.nav {
+  position: absolute;
+  left: 2%;
+  top: 30%;
+  /* z-index:5; */
+  display: flex;
+  flex-direction: column;
+ 
+  font-family: overpass;
+
+}
+
+.text {
+  font-size: 1.1em;
+  margin-right:10%;
+}
+.option {
+  font-size: 0.6em;
+}
+
+.option {
+  display:flex;
+  cursor: pointer;
+  color:blue;
+  width:100%;
+  margin-bottom:30%;
+  color:white;
+}
+.far, .fas{
+  margin-left:5%;
+  
+}
+@media only screen and (max-width: 600px) {
+ .nav .option{
+   color:blue;
+ }
+ .nav .option .text{
+   display:none;
+ }
+ .title, .position{
+   transform:translateY(-90%);
+   top:2px;
+ }
+}

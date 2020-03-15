@@ -1,0 +1,48 @@
+.sidebar {
+  width: 25%;
+  height: 95vh;
+  overflow-y: scroll;
+
+  .title,
+  .position {
+    left: 3%;
+  }
+  .title {
+    position: absolute;
+    top: 12%;
+    // color: white;
+    font-family: "Satisfy";
+    font-size: 1.2em;
+  }
+
+  .position {
+    position: absolute;
+    top: 19%;
+    // color: white;
+    font-size: 0.7em;
+    font-family: "Roboto";
+  }
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .wave-svg {
+    display: none;
+  }
+  .sidebar {
+    .title,
+    .position {
+      color: black;
+      font-size: 0.9em;
+    }
+    .title{
+      top:50px;
+    }
+    .position{
+      top:70px;
+    }
+  }
+}

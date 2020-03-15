@@ -11,9 +11,13 @@ export function navbar(parentDiv, data, type = "about") {
   // { resume: 'vaadin:diploma-scroll' }
   console.log(parentDiv)
   const array = [
-    { projects: "ion:newspaper-outline" },
-    { resume: "noto:scroll" },
-    { about: "noto:information" }
+    // { projects: "ion:newspaper-outline" },
+    // { resume: "noto:scroll" },
+    // { about: "noto:information" }
+    { about: "fa-address-card" },
+    { projects: "fa-project-diagram" },
+    { resume: "fa-file-signature" },
+    
   ]
   // document.querySelector('.sidebar').style.display === "none"
   // && (document.querySelector('.sidebar').style.display = "inline")
@@ -35,21 +39,32 @@ export function navbar(parentDiv, data, type = "about") {
     let ext = data && data[Object.keys(data)[0]][title]
 
     array.forEach((opt, i) => {
+    
       let div = ce("div", "option", nav, {})
-      div.style.cursor = "pointer"
-
-      let icon = ce("span", "iconify", div)
-      icon.setAttribute("data-icon", Object.values(array[i]))
-      icon.setAttribute("data-inline", false)
-      let text = ce("div", "text", div, { innerText: Object.keys(array[i]) })
+     
+      // let icon = ce("span", "iconify", div)
+      // icon.setAttribute("data-icon", Object.values(array[i]))
+      // icon.setAttribute("data-inline", false)
+let text = ce("div", "text", div, { innerText: Object.keys(array[i]) })
       div.appendChild(text)
+      let icon = ce("i", Object.values(array[i]), div)
+      console.log(Object.keys(array[i]))
+      let iconClass = Object.keys(array[i])[0] === 'about' ? 
+      'far' : 
+      'fas'
+
+      console.log(iconClass)
+      icon.classList.add(iconClass)
+
+
+      
 
       if (type === Object.keys(array[i])[0]) {
         let moreText = data
           ? ce("div", "more-text", div, { innerText: " - " + ext })
           : document.createTextNode(" ")
         div.appendChild(moreText)
-        div.style.color = "red"
+        div.style.color = "yellow"
         // div.style.position = "absolute"
         // div.style.top = 0
         // div.style.left = '2%'

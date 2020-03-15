@@ -4,14 +4,12 @@ body {
   background: rgb(255, 255, 255);
   font-family: verdana;
   max-width: 1200px;
+  width:100vw;
+  /* background-image:url(../img/canvas.png); */
+
 }
 
-.container {
-  /* width: 100vw; */
-  height: 100vh;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
 
 .header {
   position: relative;
@@ -54,18 +52,18 @@ body {
 }
 
 .title {
-  font-size: calc(0.8em + 1vw);
+  /* font-size: calc(0.8em + 1vw);
   margin: 0 0 1% 0;
   color: rgb(0, 0, 0);
   text-align: center;
-  transform: translate(-3%);
+  transform: translate(-3%); */
   /* font-family: "Roboto"; */
   /* font-family: 'Fahkwang'; */
   /* font-family:'Pavanam'; */
   /* font-family: 'Mandali'; */
-  font-weight: 400;
+  /* font-weight: 400;
   padding-top: 0.75%;
-  padding-right: 3%;
+  padding-right: 3%; */
 }
 
 .title a {
@@ -101,40 +99,15 @@ a {
 
 /* Main Content //////////////////////*/
 
-.container {
-  background-image: url("../img/canvas.png");
-  margin-top: 3%;
-  width: 95%;
-  height: 90%;
-  display: flex;
-  font-size: calc(0.5em + 1vw);
-  color: #262626;
-  position: fixed;
-  max-width: 1200px;
 
-  /* border:2px solid green; */
-}
-.container:before {
-  /* display:inline; */
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 1200px;
-  height: 0;
-  background: transparent;
-  border: 3px solid transparent;
-  border-radius: 0 30px 0 0;
 
-  animation: animate 1s linear forwards;
-}
 
 @keyframes animate {
   0% {
     width: 0;
     height: 0;
 
-    border-top-color: #e01414;
+    border-top-color: #0099ff;
     border-right-color: transparent;
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -142,16 +115,17 @@ a {
   50% {
     width: 100%;
     height: 0;
-    border-top-color: #e01414;
-    border-right-color: #e01414;
+    border-top-color: #0099ff;
+    border-right-color: #0099ff;
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
   100% {
     width: 100%;
     height: 100%;
-    border-top-color: #e01414;
-    border-right-color: #e01414;
+    border-top-color: #0099ff;
+    border-right-color: #0099ff;
+    /* #e01414 */
     border-bottom-color: transparent;
     border-left-color: transparent;
   }
@@ -181,23 +155,7 @@ a {
   font-family: "Overpass";
   /* border-top-right-radius:0 30px 0 0; */
 }
-.main-content {
-  /* background-image: url("../img/canvas.png"); */
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-top-right-radius: 30px;
-}
-.container .main-content {
-  /* min-width:100%; */
-  overflow-y: scroll !important;
-  /* -webkit-overflow-scrolling: touch;  */
-  /* position: relative; */
-  height: 100%;
-  margin: 0 0;
-  /* width:100%; */
-  width: 105%;
-  position: relative;
-}
+
 .container .main-content::-webkit-scrollbar {
   display: none;
 }
@@ -632,7 +590,7 @@ object {
 
 @media only screen and (min-width: 300px) {
   .sidebar {
-    display: none;
+    /* display: none; */
   }
 }
 
@@ -657,13 +615,10 @@ object {
     display: none;
   }
   .sidebar {
-    display: inline;
+    /* display: inline; */
   }
 
-  .sidebar .email a {
-    font-size: 0.75em;
-    display: inline;
-  }
+
   .proj-wrapper {
     width: 47%;
   }
@@ -707,7 +662,7 @@ object {
     /* padding-top:1.5%; */
   }
   .sidebar {
-    display: inline;
+    /* display: inline; */
   }
   .modal .project-title {
     font-size: 1.5em;
@@ -735,15 +690,12 @@ object {
     font-size: 1em;
   }
   .sidebar {
-    display: inline;
+    /* display: inline; */
     /* background-image:url('../img/canvas.png'); */
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .about {
-    /* font-size: 10px; */
-    /* background-image:url('../img/tech_icons/css3.png') */
-  }
+
 
   .project {
     margin-bottom: 5%;
@@ -764,14 +716,16 @@ object {
 }
 
 @media only screen and (min-width: 1600px) {
-  .about{
+  .para-wrap{
+    width:70%;
+    margin-left:8%;
+  }
+  /* .about{
     font-size:.3em;
-  }
-  .header-img {
-    /* width: 60%; */
-  }
+  } */
 
-  .projects {
+
+  /* .projects {
     margin-top: 1%;
-  }
+  } */
 }

@@ -1,0 +1,29 @@
+.main-content {
+  // background-position: center center;
+  // -webkit-background-size: cover;
+  // background-size:cover;
+  // background-attachment: fixed;
+  // background-image: url("../img/canvas.png");
+  /* background-repeat: no-repeat;
+    background-size: cover; */
+  // border-top-right-radius: 30px;
+
+  /* min-width:100%; */
+
+  /* -webkit-overflow-scrolling: touch;  */
+  // display:inline;
+  // height: 95vh;
+  // margin: 0 0;
+  // max-width: 50%;
+
+  width: 65%;
+  position: fixed;
+  top: 5;
+  left: 28%;
+  // scrollbar-width: none;
+  // height: 100vh;
+}
+
+.main-content > * {
+  color: transparent;
+}
