@@ -11,64 +11,7 @@ body {
 
 
 
-.header {
-  position: relative;
-  padding: 0 0 0 1%;
-  margin: 1% 3% 0 3%;
-  display: flex;
-  justify-content: center;
-  background-image: linear-gradient(rgba(30, 190, 190, 0.5), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95));
-  background-image: linear-gradient(rgba(180, 180, 180, 0.233), rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.95));
-  border-radius: 50%;
-}
 
-.header-img {
-  margin: 0 auto;
-  top: 0;
-  left: 0;
-  /* display:none; */
-  width: 70%;
-  z-index: 1;
-}
-
-.header-img .img {
-  width: 100%;
-  transform: scale(1.5);
-  /* max-height: 50px;
-  min-height:100px; */
-  /* display:none; */
-
-  /* margin: 1% 2% 2% 0; */
-  border-radius: 5%;
-  /* border: .02em solid rgb(180, 180, 180); */
-  /* box-shadow: 5px 5px 5px rgba(200, 200, 200, 1), 8px 8px 6px rgba(230, 230, 230, 1), 5px 5px 4px rgba(230, 230, 230, 1); */
-  box-shadow: 1px 1px 5px grey;
-  filter: grayscale(30%);
-}
-
-.header a {
-  margin: 1.2% 2% 0 0;
-  /* display:none; */
-}
-
-.title {
-  /* font-size: calc(0.8em + 1vw);
-  margin: 0 0 1% 0;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  transform: translate(-3%); */
-  /* font-family: "Roboto"; */
-  /* font-family: 'Fahkwang'; */
-  /* font-family:'Pavanam'; */
-  /* font-family: 'Mandali'; */
-  /* font-weight: 400;
-  padding-top: 0.75%;
-  padding-right: 3%; */
-}
-
-.title a {
-  color: rgb(255, 255, 255);
-}
 
 .fas.fa-caret-down {
   padding-left: 3%;
@@ -595,12 +538,7 @@ object {
 }
 
 @media only screen and (min-width: 600px) {
-  .header a {
-    display: inline;
-  }
-  .header-img {
-    /* width: 50%; */
-  }
+
   .title {
     font-size: calc(0.7em + 1vw);
   }
@@ -642,9 +580,7 @@ object {
 }
 
 @media only screen and (min-width: 900px) {
-  .header-img {
-    /* width: 50%; */
-  }
+
   .title {
     font-size: 1.6em;
   }
@@ -681,9 +617,6 @@ object {
   }
 }
 @media only screen and (min-width: 1200px) {
-  .header-img {
-    /* width: 50%; */
-  }
 
   .fab.fa-linkedin,
   .fab.fa-github {
@@ -717,8 +650,8 @@ object {
 
 @media only screen and (min-width: 1600px) {
   .para-wrap{
-    width:70%;
-    margin-left:8%;
+    /* width:70%; */
+    /* margin-left:8%; */
   }
   /* .about{
     font-size:.3em;

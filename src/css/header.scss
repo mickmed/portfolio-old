@@ -1,0 +1,23 @@
+.header {
+    position: absolute;
+    top: 8%;
+    padding: 3%;
+    width:20%;
+   
+
+    .name-plate,
+    .occupation {
+        color: white;
+        font-family: Satisfy;
+    }
+
+    .name-plate {
+        font-size:1.2em;
+    }
+
+    .occupation {
+        margin-right: 3%;
+        font-family: overpass;
+        font-size: 0.6em;
+    }
+}

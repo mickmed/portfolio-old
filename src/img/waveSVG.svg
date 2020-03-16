@@ -7,7 +7,17 @@ version="1.1"
 
    viewBox="0 0 233.02979 1440"
 >
-
+ <defs>
+        <linearGradient 
+		id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%">
+                <!--<animate attributeName="offset" values="0;1" repeatCount="1" dur="0s" begin="0s"/>-->
+            </stop>
+            <stop offset="100%">
+                <animate attributeName="offset" values="0;1" repeatCount="0" dur="8s" begin="0s"/>
+            </stop>
+        </linearGradient>
+    </defs>
 <g stroke="none" stroke-width="20" fill="#000" fill-rule="nonzero">
 
   <path

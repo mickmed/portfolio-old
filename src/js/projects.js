@@ -3,7 +3,7 @@ import { getResults } from "./api_helper";
 import { showSingleItemm } from "./api_helper";
 import { technologies } from "./technologies";
 import { navbar } from "./nav";
-import { sidebar } from "./sidebar";
+
 const pathToImg = require.context("../img/", true);
 // console.log(pathToImg);
 

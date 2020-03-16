@@ -1,32 +1,35 @@
 
 
 
-
-#olive defs linearGradient stop:nth-child(1){
+#olive1 defs linearGradient stop:nth-child(1){
     
-    stop-color:red;
+    stop-color:yellow;
     stop-opacity:1
     
 }
 
-#olive defs linearGradient stop:nth-child(2){
-    
-    stop-color:yellow;
+#olive1 defs linearGradient stop:nth-child(2){
+   
+    stop-color:red;
     stop-opacity:.7;
     
 }
 
 
 
-#olive g {
+#olive1 g {
   fill-opacity: 0;
-  animation: fills 8s 2s forwards;
-  stroke: green;
+  animation: fills 4s 3s forwards;
+  stroke: blue;
   stroke-width: 2;
   /* fill: green; */
 }
+#olive1 g:hover{
+    background:red;
+  animation: fills 4s 0s forwards;
 
-#olive g path {
+}
+#olive1 g path {
   stroke-dashoffset: 5000;
   stroke-dasharray: 5000;
   animation: borders 2s 1s forwards;
@@ -39,10 +42,5 @@
 @keyframes fills {
   to {
     fill-opacity: 0.99;
-  }
-}
-@keyframes empties {
-  to{
-    fill-opacity:0;
   }
 }

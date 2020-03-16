@@ -1,64 +1,78 @@
 .about {
-  width: 100%;
+  width: 70%;
   background-position: center center;
   -webkit-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
   font-family: overpass;
-  padding: 0 5%;
+  padding: 0;
   overflow-y: scroll;
   height: 100vh;
-  
+  margin-left: 30%;
+
   .para-wrap {
-    padding-top: 5%;
+    // padding:5% 0 0 3%;
     display: flex;
     font-size: 0.7em;
-    
+
     .para {
+      width: 70%;
       background-image: linear-gradient(transparent 10%, rgb(11, 105, 11) 20%, rgb(11, 105, 11) 80%, transparent 90%);
       -webkit-background-clip: text;
       background-attachment: fixed;
-      overflow-y: scroll;
+      // overflow-y: scroll;
       padding-top: 9%;
-      line-height:1.8em;
-      letter-spacing:.1em;
-     
+      line-height: 1.8em;
+      letter-spacing: 0.1em;
+
       // color:rgb(16, 77, 16);
     }
     .para > * {
       color: transparent;
     }
-    .leaf-pic{
-      width:30%;
+    .leaf-pic,
+    .leaf-pic1,
+    .leaf-pic2 {
+      width: 30%;
+      margin-top:10%;
+    }
+    .leaf-pic {
+      transform: scaleY(-1) rotate(25deg);
+    }
+    .leaf-pic1 {
+     
+      transform: rotate(210deg);
     }
   }
-  
+
   .img-wrapper {
-    margin-top: 10%;
-    // transform:translateX(25%);
+    margin-top: 5%;
+    // transform:translateX(-25%);
     display: flex;
     justify-content: flex-end;
     .hunmil {
       text-align: left;
       margin: 4% auto;
-      width: 70%;
+      width: 60%;
       /* display: block; */
     }
   }
 }
 
-.about-para::-webkit-scrollbar {
+// .para-wrap:hover #olive g{
+    
+//   animation: fills 4s 0s forwards;
+
+// }
+
+.about::-webkit-scrollbar {
   display: none;
 }
 
-.para-wrap:hover > .leaf-pic #olive {
-  background: red;
-}
+// .leaf-pic:hover .leaf-pic{
+//   background:red;
+//   animation: fills 4s 2s forwards;
+
+// }
 
 
-@media only screen and (min-width: 900px) {
-  .para-wrap{
-    width:80%;
-  }
-
-}

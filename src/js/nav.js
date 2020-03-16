@@ -4,8 +4,7 @@ import { technologies } from "./technologies"
 import { about } from "./about"
 import { resume } from "./resume"
 
-import { resumeAside } from "./resumeAside"
-import { sidebar } from "./sidebar"
+
 
 export function navbar(parentDiv, data, type = "about") {
   // { resume: 'vaadin:diploma-scroll' }
@@ -16,8 +15,7 @@ export function navbar(parentDiv, data, type = "about") {
     // { about: "noto:information" }
     { about: "fa-address-card" },
     { projects: "fa-project-diagram" },
-    { resume: "fa-file-signature" },
-    
+    { resume: "fa-file-signature" }
   ]
   // document.querySelector('.sidebar').style.display === "none"
   // && (document.querySelector('.sidebar').style.display = "inline")
@@ -39,25 +37,22 @@ export function navbar(parentDiv, data, type = "about") {
     let ext = data && data[Object.keys(data)[0]][title]
 
     array.forEach((opt, i) => {
-    
       let div = ce("div", "option", nav, {})
-     
+
       // let icon = ce("span", "iconify", div)
       // icon.setAttribute("data-icon", Object.values(array[i]))
       // icon.setAttribute("data-inline", false)
-let text = ce("div", "text", div, { innerText: Object.keys(array[i]) })
+      let iconWrapper = ce('div', 'icon-wrapper', div)
+      
+      let icon = ce("i", Object.values(array[i]), iconWrapper)
+      let text = ce("div", "text", div, { innerText: Object.keys(array[i]) })
       div.appendChild(text)
-      let icon = ce("i", Object.values(array[i]), div)
+
       console.log(Object.keys(array[i]))
-      let iconClass = Object.keys(array[i])[0] === 'about' ? 
-      'far' : 
-      'fas'
+      let iconClass = Object.keys(array[i])[0] === "about" ? "far" : "fas"
 
       console.log(iconClass)
       icon.classList.add(iconClass)
-
-
-      
 
       if (type === Object.keys(array[i])[0]) {
         let moreText = data
@@ -73,6 +68,7 @@ let text = ce("div", "text", div, { innerText: Object.keys(array[i]) })
       div.addEventListener("click", e => {
         //  console.log('keys', Object.keys(array[i])[0])
         if (Object.keys(array[i])[0] === "projects") {
+          
           render("projects")
           // technologies('technologies')
           projects("projects")

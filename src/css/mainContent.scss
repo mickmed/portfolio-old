@@ -16,10 +16,11 @@
   // margin: 0 0;
   // max-width: 50%;
 
-  width: 65%;
-  position: fixed;
+  width: 100%;
+  max-width:100%;
+  position: absolute;
   top: 5;
-  left: 28%;
+  // left: 28%;
   // scrollbar-width: none;
   // height: 100vh;
 }

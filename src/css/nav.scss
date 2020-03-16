@@ -1,44 +1,49 @@
 .nav {
-  position: absolute;
-  left: 2%;
-  top: 30%;
-  /* z-index:5; */
   display: flex;
+  position: absolute;
+  top: 30%;
+  left: 2%;
   flex-direction: column;
- 
   font-family: overpass;
 
+  .title,
+  .position {
+    color: white;
+  }
+
+  .option {
+    display: flex;
+    margin-bottom: 30%;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    font-size: 0.6em;
+
+    .text {
+      margin-right: 10%;
+      font-size: .8em;
+    }
+
+    .icon-wrapper {
+      min-width: 30%;
+      max-width: 30%;
+
+      .far,
+      .fas {
+        margin-left: 5%;
+      }
+    }
+  }
 }
 
-.text {
-  font-size: 1.1em;
-  margin-right:10%;
-}
-.option {
-  font-size: 0.6em;
-}
-
-.option {
-  display:flex;
-  cursor: pointer;
-  color:blue;
-  width:100%;
-  margin-bottom:30%;
-  color:white;
-}
-.far, .fas{
-  margin-left:5%;
-  
-}
 @media only screen and (max-width: 600px) {
- .nav .option{
-   color:blue;
- }
- .nav .option .text{
-   display:none;
- }
- .title, .position{
-   transform:translateY(-90%);
-   top:2px;
- }
+  .nav .option {
+    color: blue;
+  }
+
+  .nav .option .text {
+    display: none;
+  }
+
+ 
 }
